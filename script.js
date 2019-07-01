@@ -8,9 +8,9 @@ var inputHappened = function(currentInput){
     if(!emojiEntered){
         emojiEntered = true;
         emoji = currentInput;
-        document.querySelector(".message").innerText = `The emoji you entered is ${emoji}.\nEnter a number or multiple numbers to display them. Use 'clear' to clear rows. (try triangle followed by a number)`;
+        document.querySelector(".message").innerText = `The emoji you entered is ${emoji}.\nEnter a number or multiple numbers to display them. Use 'clear' to clear rows. (try triangle/rtriangle followed by a number)`;
     }else{
-    //handles input that has spaces
+    //handles input that has spaces, split them into an array
         if(currentInput.includes(" ")){
             arr = currentInput.split(" ");
 
@@ -28,6 +28,16 @@ var inputHappened = function(currentInput){
             else if(arr[0]=== "triangle"){
                 if(!isNaN(parseInt(arr[1]))){
                     makeTriangle(parseInt(arr[1]));
+                    displayError(" ");
+                }
+                else{
+                    displayError();
+                }
+            }
+            //handles reverse triangle
+            else if(arr[0]=== "rtriangle"){
+                if(!isNaN(parseInt(arr[1]))){
+                    makeRTriangle(parseInt(arr[1]));
                     displayError(" ");
                 }
                 else{
@@ -91,8 +101,21 @@ var displayError = function (data="Please enter a valid input..") {
         error.innerText = data;
         }
 
+//make triangle
 var makeTriangle = function(num){
     for(i=1;i<num+1;i++){
         display(i);
+    }
+}
+
+//make reverse triangle
+var makeRTriangle = function(num){
+    for(i=1;i<num+1;i++){
+        var pElement = document.createElement("p");
+        var emptySpace = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".repeat(num-i);
+        pElement.setAttribute("class","for-output");
+        pElement.innerHTML = emptySpace+emoji.repeat(i);
+        var temp = document.getElementById("output");
+        temp.appendChild(pElement);
     }
 }
