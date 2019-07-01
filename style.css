@@ -1,3 +1,12 @@
+body {
+	background-image: url('images/pineapple-tile.jpg');
+}
+
+.holdMe {
+	margin: 0 auto;
+	background-color: white;
+}
+
 .starter{
   font-size:30px;
   padding:10px;
@@ -6,6 +15,11 @@
   border:3px solid blue;
 }
 
-#output{
-  background-color:pink;
+h2 {
+	font-family: 'Barriecito', cursive;
+	font-size: 30px;
+}
+
+p {
+	font-size: 50px;
 }
