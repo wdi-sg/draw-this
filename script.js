@@ -1,8 +1,21 @@
 console.log("hello script js");
 var output = document.getElementById("output");
+var emoji = "🍍";
+
+var updateEmoji = function(newEmoji){
+    emoji = newEmoji;
+}
 var inputHappened = function(currentInput){
     //split user's input when there is spaces and store into an array
-    var inputArray = currentInput.split(" ");
+    let inputArray = currentInput.split(" ");
+    if (inputArray[1]){
+        //trim user's input from second item of inputArray and convert it into an integer
+        numOfPineapples = parseInt(inputArray[1].trim());
+    }
+    else {
+        //trim user's input from first item of inputArray and convert it into an integer
+        numOfPineapples = parseInt(inputArray[0].trim());
+    }
     // check if the first item in the inputArray is "clear"
     if (inputArray[0].toLowerCase() === "clear"){
         //if there is a second item in the inputArray
@@ -22,9 +35,11 @@ var inputHappened = function(currentInput){
             clearDisplay();
         }
     }
+
+    // check if the first item in the inputArray is "triangle"
     else if (inputArray[0].toLowerCase() === "triangle") {
-        let numOfPineapples = parseInt(inputArray[1].trim());
-        if (numOfPineapples === 3) {
+        //if user's input is a number
+        if (!isNaN(numOfPineapples)) {
             //create a wrapping div to store all of the pineapples
             let pineappleLine = document.createElement("div");
             //for loop to create the pineapple span, and append it to the wrapping div with every loop
@@ -32,7 +47,7 @@ var inputHappened = function(currentInput){
                 //create span element
                 let pineapple = document.createElement("span");
                 //set text content of span element with the pineapple emoji
-                pineapple.innerText = "🍍";
+                pineapple.innerText = emoji;
                 //add the pineapple span into the wrapping div
                 pineappleLine.appendChild(pineapple);
                 //create a clone for the pineapple wrapping div
@@ -42,16 +57,44 @@ var inputHappened = function(currentInput){
             }
         }
         else {
-            displayError("Did you mean triangle 3?");
+            displayError("Please type in a valid command!");
+        }
+    }
+    // check if the first item in the inputArray is "rtriangle"
+    else if (inputArray[0].toLowerCase() === "rtriangle") {
+        let numOfSpaces = numOfPineapples-1;
+        //if user's input is a number
+        if (!isNaN(numOfPineapples)) {
+            //create a wrapping div to store all of the pineapples
+            let pineappleLine = document.createElement("div");
+            //for loop to create the pineapple span, and append it to the wrapping div with every loop
+            for (var i=0;i<numOfPineapples;i++){
+                //create span element
+                let pineapple = document.createElement("span");
+                //set text content of span element with the pineapple emoji
+                pineapple.innerText = emoji;
+                //add the pineapple span into the wrapping div
+                pineappleLine.appendChild(pineapple);
+
+                //create a clone for the pineapple wrapping div
+                let pineappleClone = pineappleLine.cloneNode(true)
+                for (var j=numOfSpaces;j>0;j--){
+                    let space = document.createElement("span");
+                    space.innerHTML = "&nbsp;";
+                    pineappleClone.prepend(space);
+                    console.log(j);
+                }
+                numOfSpaces--;
+                //call the display function and pass in the cloned node into the parameter
+                display(pineappleClone);
+            }
+        }
+        else {
+            displayError("Please type in a valid command!");
         }
     }
     else {
-        //trim user's input and convert it into an integer
-        let numOfPineapples = parseInt(inputArray[0].trim());
         let numOfRows = 1;
-        if (inputArray[1]){
-            numOfRows = parseInt(inputArray[1].trim());
-        }
         //if user's input is a number
         if (!isNaN(numOfPineapples) && !isNaN(numOfRows)) {
             //create a wrapping div to store all of the pineapples
@@ -61,7 +104,7 @@ var inputHappened = function(currentInput){
                 //create span element
                 let pineapple = document.createElement("span");
                 //set text content of span element with the pineapple emoji
-                pineapple.innerText = "🍍";
+                pineapple.innerText = emoji;
                 //add the pineapple span into the wrapping div
                 pineappleLine.appendChild(pineapple);
             }

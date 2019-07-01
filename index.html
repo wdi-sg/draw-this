@@ -4,17 +4,29 @@
         <link rel="stylesheet" href="style.css">
     </head>
   <body>
+        <h1>Start Drawing!</h1>
+        <div id="emoji-change">
+            <span>Current emoji/character: <span id="emoji">🍍</span></span>
+            <input class="starter-emoji" id="emoji-input" placeholder="input"/>
+        </div>
         <input class="starter" id="input" placeholder="input"/>
         <p id="error"></p>
         <h2>output:</h2>
         <div class="output-box starter">
-            <p id="output"></p>
+            <div id="output"></div>
         </div>
 
         <script>
             document.querySelector('#input').addEventListener('change', function(event){
                 let currentInput = event.target.value;
                 inputHappened(currentInput)
+                this.value = "";
+            });
+            document.querySelector('#emoji-input').addEventListener('change', function(event){
+                let newEmoji = event.target.value;
+                updateEmoji(newEmoji)
+                this.value = "";
+                document.getElementById("emoji").innerText = newEmoji;
             });
         </script>
         <script src="script.js"></script>
