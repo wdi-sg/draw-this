@@ -27,4 +27,11 @@ var addPineapples = function () {
     } else {
     addMorePineapples();
     }
-};
+
+var removeRow = function (){
+    var str = inputBox.value;
+    var argArray = str.split(" ");
+    var arg1 = argArray[0];
+    var arg2 = parseInt(argArray[1]);
+    outputBox.removeChild(child[arg2-1]);
+}
