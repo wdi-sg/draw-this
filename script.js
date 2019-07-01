@@ -1,22 +1,34 @@
-var inputHappened = function(currentInput){
-  console.log( "InputHappaned!" );
-  display(currentInput);
-};
+//------------------VERSION ONE-----------------
 
-var showText = document.getElementById('output');
+// var inputHappened = function(currentInput){
+//   console.log( "InputHappened!" );
+//   display(currentInput);
+//   pineapples = [];
+// };
 
-var display = function(currentInput){
-  // your DOM manipulation code here
-    let validInput = parseInt(currentInput);
-    if (validInput % 1 !== 0) {
-        console.log("Error: please input a whole number.");
-    }
+// var wrapper = document.getElementById('output');
+// var pineapple = "🍍";
+// var pineapples = [];
 
+// var display = function(currentInput){
+//   // your DOM manipulation code here
+//     if (currentInput === "clear") {
+//         wrapper.innerHTML = null;
+//         console.log("Cleared!");
+//         return;
+//     }
+//     let validInput = parseInt(currentInput);
+//     if (validInput % 1 !== 0) {
+//         console.log("Error: please input a whole number.");
+//     }
+//     let row = document.createElement('p');
+//     for (i = 0; i < validInput; i += 1) {
+//         pineapples.push(pineapple)
+//     };
+//     row.innerHTML = pineapples.join("");
+//     wrapper.appendChild(row);
+// }
 
-
-
-
-};
 
 // "🍍"
 // step 1: draw a row in <p>, where the length of the string === input.
@@ -29,3 +41,45 @@ var display = function(currentInput){
 
 // further 1:
 // step 4: add ability to add multiple rows at a time. you may need to split the input and check if they are numbers.
+
+//---------------------VERSION TWO-------------
+
+var inputHappened = function(currentInput){
+  console.log( "InputHappened!" );
+  display(currentInput);
+  pineapples = [];
+};
+
+var wrapper = document.getElementById('output');
+var pineapple = "🍍";
+var pineapples = [];
+var clearError = "Error while clearing!"
+
+
+
+
+
+var display = function(currentInput){
+
+
+let validInput = parseInt(currentInput);
+console.log(validInput);
+if (currentInput.includes("clear") === true) {
+        console.log("has clear!");
+        var inputArray = currentInput.split(" ");
+        console.log(inputArray)
+        var validClearNum = parseInt(inputArray[1])
+        console.log("clear valid!")
+        wrapper.removeChild(wrapper.childNodes[validClearNum-1])
+}
+
+if (isNaN(validInput) === false) {
+    console.log('input is valid!')
+    let row = document.createElement('p');
+    for (i = 0; i < validInput; i += 1) {
+        pineapples.push(pineapple)
+    }
+    row.innerHTML = pineapples.join("");
+    wrapper.appendChild(row);
+}
+}
