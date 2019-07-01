@@ -3,6 +3,7 @@ console.log("hello script js");
 var userInput;
 // CREATE A TXT ARRAY TO STORE NO. OF PINEAPPLES TO DISPLAY
 var textInside = [];
+var row;
 
 var inputHappened = function(currentInput){
     // GENERATE NO. OF PINEAPPLES BASED ON USER INPUT NUMBER
@@ -15,7 +16,7 @@ var inputHappened = function(currentInput){
 
 var display = function(data) {
     var output = document.querySelector('#output');
-    // STORE THIS NEWLY CREATED ARRAY WITH 'X' NO. OF PINEAPPLES IN A TEMP STRING VARIABLE AFTER REMOVING ALL COMMAS FROM THE ARRAY
-    var row = data.join("");
+    //var row = data.join(" ");
+    row = data.join(" ");
     output.innerHTML = row;
 };
