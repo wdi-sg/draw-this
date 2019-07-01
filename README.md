@@ -40,6 +40,12 @@ You can type `clear` to clear the elements out of the DOM.
 ### Second Version
 When you type `clear 2` it clears the 2nd row. (Note: you will need `.split` to get the 2 arguments out of this input string)
 
+Example of split:
+```js
+var sentence = "Hello dogs";
+var wordArray = sentence.split(" "); // we get ["Hello","dogs"];
+```
+
 ### further
 Add the ability to add multiple rows at a time.
 
