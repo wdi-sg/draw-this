@@ -8,7 +8,7 @@ var inputHappened = function(currentInput){
     if(!emojiEntered){
         emojiEntered = true;
         emoji = currentInput;
-        document.querySelector(".message").innerText = `The emoji you entered is ${emoji}.\nEnter a number or multiple numbers to display them. Use 'clear' to clear rows. (try triangle/rtriangle followed by a number)`;
+        document.querySelector(".message").innerText = `The emoji you entered is ${emoji}.\nEnter a number or multiple numbers to display them. Use 'clear' to clear rows. (try triangle/rtriangle/etriangle/eutriangle followed by a number)`;
     }else{
     //handles input that has spaces, split them into an array
         if(currentInput.includes(" ")){
@@ -44,6 +44,27 @@ var inputHappened = function(currentInput){
                     displayError();
                 }
             }
+            //handles equilateral triangle
+            else if(arr[0]=== "etriangle"){
+                if(!isNaN(parseInt(arr[1]))){
+                    makeETriangle(parseInt(arr[1]));
+                    displayError(" ");
+                }
+                else{
+                    displayError();
+                }
+            }
+            //handles eutriangle
+            else if(arr[0]=== "eutriangle"){
+                if(!isNaN(parseInt(arr[1]))){
+                    makeEUTriangle(parseInt(arr[1]));
+                    displayError(" ");
+                }
+                else{
+                    displayError();
+                }
+            }
+
             //if first word is a number
             else if(!isNaN(parseInt(arr[0]))){
                 display(parseInt(arr[0]));
@@ -113,6 +134,28 @@ var makeRTriangle = function(num){
     for(i=1;i<num+1;i++){
         var pElement = document.createElement("p");
         var emptySpace = "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;".repeat(num-i);
+        pElement.setAttribute("class","for-output");
+        pElement.innerHTML = emptySpace+emoji.repeat(i);
+        var temp = document.getElementById("output");
+        temp.appendChild(pElement);
+    }
+}
+//make equilateral triangle
+var makeETriangle = function(num){
+    for(i=1;i<num+1;i++){
+        var pElement = document.createElement("p");
+        var emptySpace = "&nbsp;&nbsp;&nbsp;".repeat(num-i);
+        pElement.setAttribute("class","for-output");
+        pElement.innerHTML = emptySpace+emoji.repeat(i);
+        var temp = document.getElementById("output");
+        temp.appendChild(pElement);
+    }
+}
+//make upside down equilateral triangle
+var makeEUTriangle = function(num){
+    for(i=num;i>0;i--){
+        var pElement = document.createElement("p");
+        var emptySpace = "&nbsp;&nbsp;&nbsp;".repeat(num-i);
         pElement.setAttribute("class","for-output");
         pElement.innerHTML = emptySpace+emoji.repeat(i);
         var temp = document.getElementById("output");
