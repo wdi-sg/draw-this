@@ -9,3 +9,9 @@
 #output{
   background-color:pink;
 }
+
+#error{
+    margin-left:50px;
+    color:red;
+    size:20px;
+}
