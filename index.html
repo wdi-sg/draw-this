@@ -28,9 +28,10 @@
         <div id="game2">
             <div class="input" id="game2-input">
                 <h2>Move the Board!</h2>
-                <h3>Input</h3>
-                    <span>Board size: </span><input class="text" id ="board-size" type="number" /><br><br>
+                <h3 id="game2-specific">Input</h3>
+                    <span id='span-name'>Board size: </span><input class="text" id ="board-size" type="number" /><br><br>
                     <button class="buttons" id="board-button" onclick="createBoard()">Create Board</button>
+                    <button class="buttons" id="reset" onclick='resetBoard()'>Reset Game</button>
             </div>
             <div class="output" id="game2-output">
                 <h3 class="display-output">Output</h3>
@@ -39,5 +40,6 @@
         </div>
 
     <script src="script.js"></script>
+    <script src="board.js"></script>
   </body>
 </html>

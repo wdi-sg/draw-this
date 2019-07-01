@@ -63,14 +63,18 @@ h2 {
  }
 
 .main-output {
-	overflow: scroll;
 	width: 96%;
 	margin: 5px auto;
 	height: 280px;
 	border: 1px solid black;
 }
 
+#display1 {
+	overflow: scroll;
+}
+
 #display2{
+	border:none;
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
@@ -78,4 +82,7 @@ h2 {
 
 .grid {
 	border:1px solid black;
+	margin:0;
+	font-size: 20px;
+	text-align: center;
 }
