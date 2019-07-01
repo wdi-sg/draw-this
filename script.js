@@ -21,7 +21,8 @@ var display = function(){
     for (var i = 0; i < 5; i++) {
         textInside.push('🍍');
     }
-    console.log(textInside.toString());
+    var cleanText = textInside.join(' ');
+    console.log(cleanText);
 
     // MODIFY THIS ARRAY VARIABLE
     // newPineapples.innerText = "🍍";
