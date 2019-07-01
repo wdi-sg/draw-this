@@ -1,5 +1,7 @@
 # draw-this
 
+![https://media.giphy.com/media/d31vTpVi1LAcDvdm/giphy.gif](https://media.giphy.com/media/d31vTpVi1LAcDvdm/giphy.gif)
+
 Create a program that takes in commands to draw different figures.
 
 ### First Version
