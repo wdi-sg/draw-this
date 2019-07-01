@@ -57,29 +57,57 @@ var clearError = "Error while clearing!"
 
 
 
+//VERSION 2
+
+// var display = function(currentInput){
 
 
+// let validInput = parseInt(currentInput);
+// console.log(validInput);
+// if (currentInput.includes("clear") === true) {
+//         console.log("has clear!");
+//         var inputArray = currentInput.split(" ");
+//         console.log(inputArray)
+//         var validClearNum = parseInt(inputArray[1])
+//         console.log("clear valid!")
+//         wrapper.removeChild(wrapper.childNodes[validClearNum-1])
+// }
+
+// if (isNaN(validInput) === false) {
+//     console.log('input is valid!')
+//     let row = document.createElement('p');
+//     for (i = 0; i < validInput; i += 1) {
+//         pineapples.push(pineapple)
+//     }
+//     row.innerHTML = pineapples.join("");
+//     wrapper.appendChild(row);
+// }
+// }
+
+//FURTHERS
 var display = function(currentInput){
 
 
-let validInput = parseInt(currentInput);
-console.log(validInput);
 if (currentInput.includes("clear") === true) {
         console.log("has clear!");
-        var inputArray = currentInput.split(" ");
+        let inputArray = currentInput.split(" ");
         console.log(inputArray)
-        var validClearNum = parseInt(inputArray[1])
+        let validClearNum = parseInt(inputArray[1])
         console.log("clear valid!")
         wrapper.removeChild(wrapper.childNodes[validClearNum-1])
 }
 
-if (isNaN(validInput) === false) {
-    console.log('input is valid!')
-    let row = document.createElement('p');
-    for (i = 0; i < validInput; i += 1) {
-        pineapples.push(pineapple)
-    }
-    row.innerHTML = pineapples.join("");
-    wrapper.appendChild(row);
+var numArray = currentInput.split(" ");
+    console.log(numArray)
+    for (j = 0; j < numArray[0]; j++){
+        for (i = 0; i < numArray[i]; i += 1) {
+
+            pineapples.push(pineapple)
+            }
+            var row = document.createElement('p');
+            row.innerHTML = pineapples.join("");
+            wrapper.appendChild(row);
 }
+
+
 }
