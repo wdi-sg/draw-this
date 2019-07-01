@@ -8,7 +8,7 @@ var inputHappened = function(currentInput){
     if(!emojiEntered){
         emojiEntered = true;
         emoji = currentInput;
-        document.querySelector(".message").innerText = `The emoji you entered is ${emoji}.\nEnter a number or multiple numbers to display them. Use 'clear' to clear rows`;
+        document.querySelector(".message").innerText = `The emoji you entered is ${emoji}.\nEnter a number or multiple numbers to display them. Use 'clear' to clear rows. (try triangle followed by a number)`;
     }else{
     //handles input that has spaces
         if(currentInput.includes(" ")){
@@ -18,6 +18,16 @@ var inputHappened = function(currentInput){
             if(arr[0]=== "clear"){
                 if(!isNaN(parseInt(arr[1]))){
                     clearDisplay(parseInt(arr[1]));
+                    displayError(" ");
+                }
+                else{
+                    displayError();
+                }
+            }
+            //handles triangle
+            else if(arr[0]=== "triangle"){
+                if(!isNaN(parseInt(arr[1]))){
+                    makeTriangle(parseInt(arr[1]));
                     displayError(" ");
                 }
                 else{
@@ -81,3 +91,8 @@ var displayError = function (data="Please enter a valid input..") {
         error.innerText = data;
         }
 
+var makeTriangle = function(num){
+    for(i=1;i<num+1;i++){
+        display(i);
+    }
+}
