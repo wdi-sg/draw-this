@@ -1,13 +1,30 @@
 console.log("hello script js");
-
+var output = document.getElementById("output");
 var inputHappened = function(currentInput){
-    // check if input is "clear"
-    if (currentInput === "clear"){
-        clearDisplay();
+    //split user's input when there is spaces and store into an array
+    var inputArray = currentInput.split(" ");
+    // check if the first item in the inputArray is "clear"
+    if (inputArray[0].toLowerCase() === "clear"){
+        //if there is a second item in the inputArray
+        if (inputArray[1]) {
+            //select the selected row in the output section
+            var toBeDeleted = output.children[(inputArray[1]-1)];
+            // check if the selected row does exist
+            if (toBeDeleted){
+                output.removeChild(toBeDeleted)
+            }
+            else {
+                displayError("There is no such row!");
+            }
+        }
+        //if there is no second item in the inputArray
+        else {
+            clearDisplay();
+        }
     }
     else {
         //trim user's input and convert it into an integer
-        let numOfPineapples = parseInt(currentInput.trim());
+        let numOfPineapples = parseInt(inputArray[0].trim());
 
         //if user's input is a number
         if (!isNaN(numOfPineapples)) {
@@ -28,14 +45,14 @@ var inputHappened = function(currentInput){
         }
         //if not a number, display error message
         else {
-            displayError("Please type in a valid number!");
+            displayError("Please type in a valid command!");
         }
     }
 };
 //display line
 var display = (stuffToDisplay) => {
     //select the element #output and add in the new pineapple line
-    document.getElementById("output").appendChild(stuffToDisplay);
+    output.appendChild(stuffToDisplay);
 }
 //display error
 var displayError = (data) => {
