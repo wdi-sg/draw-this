@@ -93,7 +93,9 @@ Create a program that draws on a 4 x 4 area.
 
 Create a "cursor" that keeps track of where to draw from.
 
-When you type `down 2` the program draws in that direction. Start with just the commands `up`, `down`, `left`, `right`. 
+The user can move the cursor with `movedown 2`
+
+When you type `drawdown 2` the program draws in that direction. Start with just the commands `up`, `down`, `left`, `right`. 
 
 Given your cursor is at: `0,1`
 
