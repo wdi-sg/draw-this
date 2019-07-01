@@ -1,7 +1,7 @@
 console.log("hello script js");
 
 var numInput = 0;
-var fruitsArray = [];
+var parsedInput = null;
 
 var inputHappened = function(currentInput){
   console.log( currentInput );
@@ -14,7 +14,12 @@ document.getElementById('javascriptButton').onclick = function interpretAnswer()
       parsedInput = inputResults.toLowerCase();
       numInput = parseInt(inputResults);
     console.log("Parsed input value: " + parsedInput + " or " + numInput);
-    checkAnswer();
+    if (parsedInput === "clear"){
+        location.reload();
+    } else {
+        checkAnswer();
+    }
+
 };
 
 
