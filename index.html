@@ -1,18 +1,22 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="style.css">
-  </head>
+    <meta charset="utf-8">
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
   <body>
-    <input class="starter" id="input" placeholder="input"/>
-    <h2>output:</h2>
-    <p class="starter" id="output"></p>
-    <script>
-      document.querySelector('#input').addEventListener('change', function(event){
-        var currentInput = event.target.value;
-        inputHappened(currentInput)
-      });
+        <input class="starter" id="input" placeholder="input"/>
+        <p id="error"></p>
+        <h2>output:</h2>
+        <div class="output-box starter">
+            <p id="output"></p>
+        </div>
 
-    </script>
-    <script src="script.js"></script>
-  </body>
+        <script>
+            document.querySelector('#input').addEventListener('change', function(event){
+                let currentInput = event.target.value;
+                inputHappened(currentInput)
+            });
+        </script>
+        <script src="script.js"></script>
+    </body>
 </html>
