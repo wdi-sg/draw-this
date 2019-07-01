@@ -25,9 +25,12 @@ var inputHappened = function(currentInput){
     else {
         //trim user's input and convert it into an integer
         let numOfPineapples = parseInt(inputArray[0].trim());
-
+        let numOfRows = 1;
+        if (inputArray[1]){
+            numOfRows = parseInt(inputArray[1].trim());
+        }
         //if user's input is a number
-        if (!isNaN(numOfPineapples)) {
+        if (!isNaN(numOfPineapples) && !isNaN(numOfRows)) {
             //create a wrapping div to store all of the pineapples
             let pineappleLine = document.createElement("div");
             //for loop to create many spans, containing the individual pineapple.
@@ -39,8 +42,13 @@ var inputHappened = function(currentInput){
                 //add the pineapple span into the wrapping div
                 pineappleLine.appendChild(pineapple);
             }
-            //call the display function and pass in the wrapping div into the parameter
-            display(pineappleLine);
+            //for loop to append the pineapple wrapping div
+            for (var i=0;i<numOfRows;i++){
+                //create a clone for the pineapple wrapping div
+                let pineappleClone = pineappleLine.cloneNode(true)
+                //call the display function and pass in the cloned node into the parameter
+                display(pineappleClone);
+            }
             displayError("");
         }
         //if not a number, display error message
