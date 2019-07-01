@@ -4,7 +4,7 @@
 let pineappleArray = [];
 let newPineappleString;
 let newParagraph = document.createElement("p");
-let documentBody = document.body;
+let outputBody = document.getElementById('output')
 let userInputArray = [];
 
 
@@ -12,7 +12,6 @@ let userInputArray = [];
 var inputHappened = function(currentInput){
 
     // To reset everything back to zero
-    newParagraph = document.createElement("p");
     pineappleArray = [];
 
     let userInput = currentInput;
@@ -22,18 +21,41 @@ var inputHappened = function(currentInput){
     let rowNumber = parseInt(userInputArray[1]);
 
     if (userInput.includes("clear") === true) {
-        clearRow(rowNumber)
+        clearRow(rowNumber);
 
-    } else if (userInput !== NaN) {
-        // To create the string of pineapples in <p></p> based on user's input
-        createPineappleArray(userInput);
+    } else if (userInput.includes("triangle") === true) {
 
-        newParagraph.textContent = newPineappleString;
+        let triangleLength = parseInt(userInputArray[1])
 
-        documentBody.appendChild(newParagraph);
+        for (i = 0; i < triangleLength; i ++) {
+
+            // To create the string of pineapples in <p></p> based on user's input
+            newPineappleString = "";
+            pineappleArray = [];
+
+            newParagraph = document.createElement("p");
+            createPineappleArray(i + 1);
+
+            newParagraph.textContent = newPineappleString;
+
+            outputBody.appendChild(newParagraph);
+        }
 
     } else {
-        alert('Please type in a number')
+
+        for (i = 0; i < userInputArray.length; i ++) {
+
+            // To create the string of pineapples in <p></p> based on user's input
+            newPineappleString = "";
+            pineappleArray = [];
+
+            newParagraph = document.createElement("p");
+            createPineappleArray(userInputArray[i]);
+
+            newParagraph.textContent = newPineappleString;
+
+            outputBody.appendChild(newParagraph);
+        }
     }
 
 };
@@ -58,7 +80,7 @@ const createPineappleArray = function(userInput) {
 
 //     for (let i = 0; i < paragraphLength; i ++) {
 
-//         documentBody.removeChild(paragraphs[0]);
+//         outputBody.removeChild(paragraphs[0]);
 
 //     }
 
@@ -69,7 +91,7 @@ const clearRow = function(rowNumber) {
 
     let paragraphs = document.getElementsByTagName('p');
 
-    documentBody.removeChild(paragraphs[(rowNumber - 1)]);
+    outputBody.removeChild(paragraphs[(rowNumber - 1)]);
 
 }
 
