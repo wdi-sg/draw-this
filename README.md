@@ -20,6 +20,12 @@ Your program draws:
 🍍🍍🍍
 ```
 
+Your HTML would look like this:
+
+```
+<p>🍍🍍🍍</p>
+```
+
 You input `2`.
 
 Your program draws a new row, adding to what's already there: 
