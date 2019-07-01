@@ -44,7 +44,7 @@ var displayTwoDim = function(x, y) {
     display(x);
   }
 };
-var displayTriangle = function(size){
+var displayTriangle = function(size){ //Doesn't Work
     for(var i = 1; i <= size ; i ++){
         display(size);
     }
