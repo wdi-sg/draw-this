@@ -1,13 +1,11 @@
-console.log("hello script js");
-console.log(parseInt("3 2"))
-
-
-
 var inputHappened = function(currentInput){
     var arr = null;
 
+    //handles input that has spaces
     if(currentInput.includes(" ")){
         arr = currentInput.split(" ");
+
+        //if first word is clear
         if(arr[0]=== "clear"){
             if(!isNaN(parseInt(arr[1]))){
                 clearDisplay(parseInt(arr[1]));
@@ -16,18 +14,25 @@ var inputHappened = function(currentInput){
             else{
                 displayError();
             }
-        }else if(!isNaN(parseInt(arr[0]))){
+        }
+        //if first word is a number
+        else if(!isNaN(parseInt(arr[0]))){
             display(parseInt(arr[0]));
+            //loop through array until finish or meet with a NaN
             for(i=1;i<arr.length;i++){
                 if(!isNaN(parseInt(arr[i])))
                     display(parseInt(arr[i]));
                 else
                     break;
             }
-        }else{
+        }
+        //if first word is gibberish
+        else{
             displayError();
         }
-    }else{
+    }
+    //handles input that doesn't has spaces
+    else{
         if(!isNaN(parseInt(currentInput))){
             display(parseInt(currentInput));
             displayError(" ");
@@ -37,10 +42,6 @@ var inputHappened = function(currentInput){
 
     }
 }
-
-
-
-
 
 
 //to add p tag into output box
@@ -65,6 +66,7 @@ var clearDisplay = function(num){
 
 }
 
+//display error message for invalid input
 var displayError = function (data="Please enter a valid input..") {
         var error = document.querySelector("#error");
         error.innerText = data;
