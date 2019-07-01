@@ -18,10 +18,9 @@ Your program draws:
 🍍🍍🍍
 ```
 
-You input 2.
+You input `2`.
 
-Your program draws: 
-
+Your program draws a new row, adding to what's already there: 
 
 ```
 🍍🍍🍍
@@ -55,7 +54,7 @@ The HTML should look like this:
 ```
 
 ### further
-When your program first runs, set the ability to enter the character or emoji that your program will draw with.
+When your program first runs, ask the user what character or emoji that your program will use to draw, for all commands.
 
 ### further
 Add the ability to draw triangles.
@@ -79,7 +78,7 @@ Type `rtriangle 3` would draw:
 ```
 
 
-Note: you will need the HTML entity `&nbsp` to create spaces.
+Note: you will need the HTML entity `&nbsp;` to create spaces. See: [https://www.w3schools.com/html/html_entities.asp](https://www.w3schools.com/html/html_entities.asp)
 
 ### further
 Create a program that draws on a 4 x 4 area.
