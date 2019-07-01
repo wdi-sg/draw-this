@@ -22,6 +22,29 @@ var inputHappened = function(currentInput){
             clearDisplay();
         }
     }
+    else if (inputArray[0].toLowerCase() === "triangle") {
+        let numOfPineapples = parseInt(inputArray[1].trim());
+        if (numOfPineapples === 3) {
+            //create a wrapping div to store all of the pineapples
+            let pineappleLine = document.createElement("div");
+            //for loop to create the pineapple span, and append it to the wrapping div with every loop
+            for (var i=0;i<numOfPineapples;i++){
+                //create span element
+                let pineapple = document.createElement("span");
+                //set text content of span element with the pineapple emoji
+                pineapple.innerText = "🍍";
+                //add the pineapple span into the wrapping div
+                pineappleLine.appendChild(pineapple);
+                //create a clone for the pineapple wrapping div
+                let pineappleClone = pineappleLine.cloneNode(true)
+                //call the display function and pass in the cloned node into the parameter
+                display(pineappleClone);
+            }
+        }
+        else {
+            displayError("Did you mean triangle 3?");
+        }
+    }
     else {
         //trim user's input and convert it into an integer
         let numOfPineapples = parseInt(inputArray[0].trim());
