@@ -1,18 +1,23 @@
 <html>
   <head>
+    <meta charset="utf-8">
     <link rel="stylesheet" href="style.css">
+    <title>Pen Pineapple Apple Pen</title>
   </head>
   <body>
-    <input class="starter" id="input" placeholder="input"/>
-    <h2>output:</h2>
-    <p class="starter" id="output"></p>
-    <script>
-      document.querySelector('#input').addEventListener('change', function(event){
-        var currentInput = event.target.value;
-        inputHappened(currentInput)
-      });
+    <h2>Input</h2>
+    <div>
+        Input Character: <input class="text" id ="input-character" type="text" /><br><br>
+        Input Options: <input class="text" id="input-text" type="text" /><br><br>
+        <button class="buttons" id ="input-button" onclick="createPineapples()">Submit!</button>
+    </div>
 
-    </script>
+    <h2>output:</h2>
+    <p id = "message-display"></p>
+    <div class="main-output" id="display1">
+
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>
