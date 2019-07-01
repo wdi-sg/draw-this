@@ -1,6 +1,7 @@
 console.log("hello script js");
 
 var userInput;
+
 // CREATE A TXT ARRAY TO STORE NO. OF PINEAPPLES TO DISPLAY
 var textInside = [];
 var row;
@@ -19,4 +20,5 @@ var display = function(data) {
     //var row = data.join(" ");
     row = data.join(" ");
     output.innerHTML = row;
+
 };
