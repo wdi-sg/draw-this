@@ -2,6 +2,8 @@ console.log("hello script js");
 
 var numInput = 0;
 var parsedInput = null;
+var clearStr = null;
+
 
 var inputHappened = function(currentInput){
   console.log( currentInput );
@@ -9,20 +11,42 @@ var inputHappened = function(currentInput){
 };
 
 document.getElementById('javascriptButton').onclick = function interpretAnswer() {
-  var inputResults = document.getElementById('input').value;
-  console.log("input value: " + inputResults);
-      parsedInput = inputResults.toLowerCase();
-      numInput = parseInt(inputResults);
+    var inputResults = document.getElementById('input').value;
+    console.log("input value: " + inputResults);
+    parsedInput = inputResults.toLowerCase();
+    numInput = parseInt(inputResults);
     console.log("Parsed input value: " + parsedInput + " or " + numInput);
-    if (parsedInput === "clear"){
+/*    if (parsedInput === "clear"){
         location.reload();
+    } else if (parsedInput === "clear 2") {
+        var res = parsedInput.split(" ");
+        console.log(res);
+        var removeEle = (parseInt(res[1]) - 1);
+        console.log("removeEle " + removeEle);
+        output.removeChild(output.childNodes[removeEle]);*/
+    if (parsedInput.includes("clear") === true){
+      console.log(parsedInput);
+      clearInput();
     } else {
         checkAnswer();
     }
-
 };
 
-
+var clearInput = function () {
+    console.log('Inside clearInput');
+    var clearNum = parsedInput.split(" ");
+    console.log(clearNum);
+    if (clearNum.length === 1){
+        location.reload();
+    } else if (clearNum.length > 1) {
+        //var splitStr = [];
+        var res = parsedInput.split(" ");
+        console.log(res);
+        var removeEle = (parseInt(res[1]) - 1);
+        console.log("removeEle " + removeEle);
+        output.removeChild(output.childNodes[removeEle]);
+    }
+};
 
 var display = function(stuffToDisplay){
   // your DOM manipulation code here
@@ -38,7 +62,6 @@ var drawFruits = function() {
     }
     console.log(drawRow);
     output.appendChild(drawRow);
-
 };
 
 function checkAnswer() {
