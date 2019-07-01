@@ -1,18 +1,12 @@
 <html>
   <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8">
   </head>
   <body>
-    <input class="starter" id="input" placeholder="input"/>
+    <input class="starter" id="input" placeholder="input" onchange="input()"/>
     <h2>output:</h2>
     <p class="starter" id="output"></p>
-    <script>
-      document.querySelector('#input').addEventListener('change', function(event){
-        var currentInput = event.target.value;
-        inputHappened(currentInput)
-      });
-
-    </script>
     <script src="script.js"></script>
   </body>
 </html>
