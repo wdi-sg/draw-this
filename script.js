@@ -5,26 +5,36 @@ let pineappleArray = [];
 let newPineappleString;
 let newParagraph = document.createElement("p");
 let documentBody = document.body;
+let userInputArray = [];
 
 
 // When user types in an input
 var inputHappened = function(currentInput){
 
-
     // To reset everything back to zero
     newParagraph = document.createElement("p");
     pineappleArray = [];
 
+    let userInput = currentInput;
 
-    // ParseInt the user's input
-    let userInput = parseInt(currentInput);
+    userInputArray = userInput.split(" ");
 
-    // To create the string of pineapples in <p></p> based on user's input
-    createPineappleArray(userInput);
+    let rowNumber = parseInt(userInputArray[1]);
 
-    newParagraph.textContent = newPineappleString;
+    if (userInput.includes("clear") === true) {
+        clearRow(rowNumber)
 
-    documentBody.appendChild(newParagraph);
+    } else if (userInput !== NaN) {
+        // To create the string of pineapples in <p></p> based on user's input
+        createPineappleArray(userInput);
+
+        newParagraph.textContent = newPineappleString;
+
+        documentBody.appendChild(newParagraph);
+
+    } else {
+        alert('Please type in a number')
+    }
 
 };
 
@@ -39,8 +49,29 @@ const createPineappleArray = function(userInput) {
 
 }
 
+// Version 1 of Clearing
+// const clearArea = function() {
 
+//     let paragraphs = document.getElementsByTagName('p');
 
+//     let paragraphLength = paragraphs.length;
+
+//     for (let i = 0; i < paragraphLength; i ++) {
+
+//         documentBody.removeChild(paragraphs[0]);
+
+//     }
+
+// }
+
+// // Version 2 of Clearing
+const clearRow = function(rowNumber) {
+
+    let paragraphs = document.getElementsByTagName('p');
+
+    documentBody.removeChild(paragraphs[(rowNumber - 1)]);
+
+}
 
 
 
