@@ -13,13 +13,8 @@ var inputHappened = function(currentInput){
 
 var display = function(stuffToDisplay){
   // your DOM manipulation code here
-  if (currentInput ==="clear"){
-    document.querySelector("#output").innerHTML = "";
-  } else {
     for(let i=0; i< currentInput; i++){
         text.push("🍍");
         console.log(text);
-
     }
 }
-};
