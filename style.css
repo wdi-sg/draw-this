@@ -1,11 +1,88 @@
-.starter{
-  font-size:30px;
-  padding:10px;
-  display:block;
-  margin:40px;
-  border:3px solid blue;
+body {
+	margin:0px;
+	padding:0px;
 }
 
-#output{
-  background-color:pink;
+header {
+	text-align: center;
+	background-color: grey;
+	color: white;
+	height: 75px;
+}
+
+h1{
+	padding-top: 20px
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	width: 90%;
+	height: 480px;
+	margin:0 auto;
+}
+
+#game1 {
+	width: 45%;
+	height: 100%;
+	text-align: left;
+	margin-right: 30px;
+	padding-left: 10px;
+}
+
+#game2 {
+	width: 45%;
+	height: 100%;
+	text-align:left;
+	padding-left: 10px;
+}
+
+h2 {
+	margin:10px 0 0 0;
+	text-decoration: underline;
+	text-align: center;
+}
+
+.output {
+	margin:10px 0 0 0;
+	border:1px solid black;
+	height:320px;
+}
+
+#game2-output{
+	margin-top: 50px;
+}
+ h3 {
+ 	margin:0px;
+ 	text-decoration: underline;
+ }
+
+ .display-output {
+ 	margin: 5px 0 0 5px;
+ 	text-decoration: none;
+ }
+
+.main-output {
+	width: 96%;
+	margin: 5px auto;
+	height: 280px;
+	border: 1px solid black;
+}
+
+#display1 {
+	overflow: scroll;
+}
+
+#display2{
+	border:none;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.grid {
+	border:1px solid black;
+	margin:0;
+	font-size: 20px;
+	text-align: center;
 }
