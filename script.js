@@ -42,7 +42,7 @@ function display(entry){
       document.getElementById("output").appendChild(paragraph);
       pineappleList = document.querySelectorAll(".pineappleList");
     };
-  }else if ((strSplit[0] === "etriangle")||(strSplit[0] === "rtriangle")&&(strSplit[1]!=undefined)){
+  }else if ((strSplit[0] === "rtriangle")&&(strSplit[1]!=undefined)){
     var counter = parseInt(strSplit[1]);
     var countBackwards = parseInt(strSplit[1]);
     for (var i = 0; i < counter; i++){
@@ -52,11 +52,9 @@ function display(entry){
         if ((i+j) > (countBackwards-i)){
           paragraph.textContent += emojiSetState;
         }else {
-          if (strSplit[0] === "rtriangle"){
-            paragraph.textContent += String.fromCharCode(160);//set this for reverse triangle
-            paragraph.textContent += String.fromCharCode(160);//set this for reverse triangle
-            paragraph.textContent += String.fromCharCode(160);//set this for reverse triangle
-          }
+          paragraph.textContent += String.fromCharCode(160);//set this for reverse triangle
+          paragraph.textContent += String.fromCharCode(160);//set this for reverse triangle
+          paragraph.textContent += String.fromCharCode(160);//set this for reverse triangle
           paragraph.textContent += String.fromCharCode(160);
           paragraph.textContent += String.fromCharCode(160);
         }
@@ -66,10 +64,26 @@ function display(entry){
       document.getElementById("output").appendChild(paragraph);
       pineappleList = document.querySelectorAll(".pineappleList");
     };
-  }
-  else if ((strSplit[0] === "eutriangle")&&(strSplit[1]!=undefined)){
+  }else if ((strSplit[0] === "etriangle")&&(strSplit[1]!=undefined)){
     var counter = parseInt(strSplit[1]);
-    var countBackwards = parseInt(strSplit[1]);
+    for (var i = 0; i < counter; i++){
+      var paragraph = document.createElement("p");
+      paragraph.classList.add("pineappleList");
+      for (var j = 0; j < counter; j++){
+        if ((j+i+1)>(counter-1)){
+          paragraph.textContent += emojiSetState;
+        }else{
+          paragraph.textContent += String.fromCharCode(160);
+          paragraph.textContent += String.fromCharCode(160);
+        }
+      };
+      document.getElementById("output").appendChild(paragraph);
+      pineappleList = document.querySelectorAll(".pineappleList");
+    };
+
+  }else if ((strSplit[0] === "eutriangle")&&(strSplit[1]!=undefined)){
+    var counter = parseInt(strSplit[1]);
+    // var countBackwards = parseInt(strSplit[1]);
     var countUp = 0;
     for (var i = 0; i < counter; i++){
       var paragraph = document.createElement("p");
