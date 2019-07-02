@@ -1,25 +1,30 @@
 var inputArray = [];
-var showArray = [];
+var showArray;
 
 var i = 0;
 
 var inputHappened = function(currentInput){
     document.getElementById("input").value = "";
     console.log( currentInput );
-    inputArray.push(currentInput);
     console.log("inputArray: " + inputArray);
 
     for (i = 0; i < currentInput; i++) {
             console.log('i: ' + i)
-            showArray.push("🍍");
-            console.log('showArray: ' + showArray)
+            inputArray.push("🍍");
+            console.log('inputArray: ' + inputArray)
+
+        if (inputArray.length === currentInput) {
+            console.log("currentInput: " + currentInput);
+            inputArray.push(" ");
+        }
+
     }
     display();
 
 };
 
 var display = function(){
-  document.getElementById("output").innerHTML = showArray;
+  document.getElementById("output").innerHTML = inputArray;
 };
 
 // console.log("hello script js");
