@@ -1,11 +1,20 @@
 console.log("hello script js");
-
+var textPlace = [];
 var inputHappened = function(currentInput){
   console.log( currentInput );
-  display( "WOW SOMETHING HAPPENED" );
+  var i = 0;
+
+  while(i<currentInput){
+    textPlace.push("🍍");
+    // textPlace.push(" anddddd ");
+    i++;
+}
+display( textPlace );
 };
 
-var display = function(stuffToDisplay){
-  // your DOM manipulation code here
-  
+var display = function(data){
+    var output = document.querySelector('#output');
+    // console.log(data);
+    var row = data.join("");
+    output.innerHTML = row;
 };
