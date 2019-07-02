@@ -16,15 +16,7 @@ document.getElementById('javascriptButton').onclick = function interpretAnswer()
     parsedInput = inputResults.toLowerCase();
     numInput = parseInt(inputResults);
     console.log("Parsed input value: " + parsedInput + " or " + numInput);
-/*    if (parsedInput === "clear"){
-        location.reload();
-    } else if (parsedInput === "clear 2") {
-        var res = parsedInput.split(" ");
-        console.log(res);
-        var removeEle = (parseInt(res[1]) - 1);
-        console.log("removeEle " + removeEle);
-        output.removeChild(output.childNodes[removeEle]);*/
-    if (parsedInput.includes("clear") === true){
+    if (parsedInput.includes("clear") === true){ //includes only returns true or false
       console.log(parsedInput);
       clearInput();
     } else {
@@ -39,7 +31,6 @@ var clearInput = function () {
     if (clearNum.length === 1){
         location.reload();
     } else if (clearNum.length > 1) {
-        //var splitStr = [];
         var res = parsedInput.split(" ");
         console.log(res);
         var removeEle = (parseInt(res[1]) - 1);
