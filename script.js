@@ -26,6 +26,7 @@ var inputHappened = function(
 
   //array to store pineapples
   var pineapple = [];
+  console.log(pineapple);
 
   //***VERSION 1 - loop to check through input and return pineapple
    for (let i = 0; i<input; i++){
@@ -55,6 +56,11 @@ var inputHappened = function(
 
          //to attach the number to the corresponding <p> tag and replace the pineapples with new text value
          (document.querySelectorAll("p")[rowToRemove]).innerHTML="This row has been removed."
+        } else if (inputRecord[j].includes('clear') && inputRecord[j].split(" ")[1] === undefined ){
+            var parentP = document.querySelector("p");
+            while (parentP.firstChild){
+                    parentP.removeChild(parentP.firstChild)
+            }
         }
     }
 }
