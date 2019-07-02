@@ -15,11 +15,12 @@ var inputHappened = function(currentInput) {
   if (arrCurrentInput[0] == "clear" && typeof Number(arrCurrentInput[1]) == "number") {
     clearRow(Number(arrCurrentInput[1]) - 1);
   } else if (arrCurrentInput.length == 1) {
-    display(currentInput);
+    drawLine(currentInput);
   } else if (arrCurrentInput[0] == "triangle") {
     displayTriangle(arrCurrentInput[1]);
-         } else {
-           displayTwoDim(arrCurrentInput[0], arrCurrentInput[1] - 1);
+  }
+else {
+           displayTwoDim(arrCurrentInput[0], arrCurrentInput[1]);
          }
   //console.log(arrCurrentInput[1]); //For Debugging
     }, 1000);
@@ -28,26 +29,29 @@ var inputHappened = function(currentInput) {
 
 var outputElement = document.getElementById("output");
 
-var display = function(stuffToDisplay) {
-  // DOM manipulation code here
+var drawLine = function(size) {
   var outputString = "";
-  for (var i = 0; i < Number(stuffToDisplay); i++) {
+  for (var i = 0; i < Number(size); i++) {
     outputString += charDraw;
   }
-  var p = document.createElement("p");
-  p.textContent = outputString;
-  console.log(outputString);
-  outputElement.appendChild(p);
-};
+  display(outputString);
+}
 var displayTwoDim = function(x, y) {
   for (var i = 0; i < y; i++) {
-    display(x);
+    drawLine(x);
   }
 };
 var displayTriangle = function(size){ //Doesn't Work
-    for(var i = 1; i <= size ; i ++){
-        display(size);
+    for(var i = 1; i < size ; i++){
+        display(charDraw * size);
     }
+};
+var display = function(stuffToDisplay) {
+  // DOM manipulation code here
+  var p = document.createElement("p");
+  p.textContent = stuffToDisplay;
+  console.log(stuffToDisplay);
+  outputElement.appendChild(p);
 };
 var clearDisplay = function() {
   document.getElementById("output").innerHTML = "";
