@@ -1,4 +1,4 @@
-// console.log("hello script js");
+// con  sole.log("hello script js");
 
 // Declaring global variables
 let pineappleArray = [];
@@ -20,8 +20,11 @@ var inputHappened = function(currentInput){
 
     let rowNumber = parseInt(userInputArray[1]);
 
-    if (userInput.includes("clear") === true) {
+    if (userInput.includes("clear") === true && userInputArray.length === 2 ) {
         clearRow(rowNumber);
+
+    } else if (userInput.includes("clear") && userInputArray.length === 1 ) {
+        clearArea();
 
     } else if (userInput.includes("triangle") === true) {
 
@@ -72,19 +75,19 @@ const createPineappleArray = function(userInput) {
 }
 
 // Version 1 of Clearing
-// const clearArea = function() {
+const clearArea = function() {
 
-//     let paragraphs = document.getElementsByTagName('p');
+    let paragraphs = document.getElementsByTagName('p');
 
-//     let paragraphLength = paragraphs.length;
+    let paragraphLength = paragraphs.length;
 
-//     for (let i = 0; i < paragraphLength; i ++) {
+    for (let i = 0; i < paragraphLength; i ++) {
 
-//         outputBody.removeChild(paragraphs[0]);
+        outputBody.removeChild(paragraphs[0]);
 
-//     }
+    }
 
-// }
+}
 
 // // Version 2 of Clearing
 const clearRow = function(rowNumber) {
