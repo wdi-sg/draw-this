@@ -1,11 +1,21 @@
-console.log("hello script js");
-
 var inputHappened = function(currentInput){
-  console.log( currentInput );
-  display( "WOW SOMETHING HAPPENED" );
-};
+    var parseInput = parseInt(currentInput);
+    var paragraph = document.getElementById('output');
+    var pineapple = [];
+    for (var i = 0; i < parseInput; i++){
+        // console.log( i + " ");
+        pineapple.push('🍍')
+    };
+    // paragraph.innerHTML = pineapple;
+
+    //creating an empty paragraph element
+    var newParagraph = document.createElement('p');
+    //innerHTML sets content to newParagraph
+    newParagraph.innerHTML = pineapple.join(" ");
+    // add new paragraph to output
+    paragraph.appendChild(newParagraph);
+
+}
 
 var display = function(stuffToDisplay){
-  // your DOM manipulation code here
-  
 };
