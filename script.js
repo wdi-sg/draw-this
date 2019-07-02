@@ -1,17 +1,20 @@
 console.log("hello script js");
+//initialize global variables
 var pineappleList;
 var emojiSetState = prompt("What emoji would you like to use?");
 
+//prompt user for what emoji to use
 if (emojiSetState === ""){
   emojiSetState = "🍍"
 }
 
-
+//function when user enters the number to print
 function input (){
   var entry = document.getElementById("input").value;
   display(entry);
 }
 
+//function to display pineapple or emojis to output
 function display(entry){
   var strSplit = entry.split(" ");
   var numToClear = strSplit[1];
@@ -60,35 +63,31 @@ function display(entry){
         countBackwards--;
       };
       countBackwards = parseInt(strSplit[1]);
-      //countBackwards = parseInt(strSplit[1]);
       document.getElementById("output").appendChild(paragraph);
       pineappleList = document.querySelectorAll(".pineappleList");
     };
-
   }
-  // else if ((strSplit[0] === "eutriangle")&&(strSplit[1]!=undefined)){
-  //   var counter = parseInt(strSplit[1]);
-  //   var countBackwards = parseInt(strSplit[1]);
-  //   var zero = 0;
-  //   for (var i = 0; i < counter; i++){
-  //     var paragraph = document.createElement("p");
-  //     paragraph.classList.add("pineappleList");
-  //     for (var j = countBackwards; j > 0; j--){
-  //       if ((zero) < (j)){
-  //         paragraph.textContent += emojiSetState;
-  //       }else{
-  //         paragraph.textContent += String.fromCharCode(160);
-  //         paragraph.textContent += String.fromCharCode(160);
-  //       }
-  //     };
-  //     zero++;
-  //     countBackwards = parseInt(strSplit[1]);
-  //     zero = 0;
-  //     //countBackwards = parseInt(strSplit[1]);
-  //     document.getElementById("output").appendChild(paragraph);
-  //     pineappleList = document.querySelectorAll(".pineappleList");
-  //   };
-  // }
+  else if ((strSplit[0] === "eutriangle")&&(strSplit[1]!=undefined)){
+    var counter = parseInt(strSplit[1]);
+    var countBackwards = parseInt(strSplit[1]);
+    var countUp = 0;
+    for (var i = 0; i < counter; i++){
+      var paragraph = document.createElement("p");
+      paragraph.classList.add("pineappleList");
+      for (var j = counter; j > 0; j--){
+        if ((counter-1-countUp)<(counter-i)){
+          paragraph.textContent += emojiSetState;
+        }else{
+          paragraph.textContent += String.fromCharCode(160);
+          paragraph.textContent += String.fromCharCode(160);
+        }
+        countUp++;
+      };
+      countUp = 0;
+      document.getElementById("output").appendChild(paragraph);
+      pineappleList = document.querySelectorAll(".pineappleList");
+    };
+  }
   else if ((!isNaN(parseInt(strSplit[0])))&&(!isNaN(parseInt(strSplit[1])))){
     var rows = parseInt(strSplit[0]);
     var quantity = parseInt(strSplit[1]);
