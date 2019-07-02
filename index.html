@@ -1,18 +1,37 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
   <head>
+    <meta charset="UTF-8">
+    <title>Document</title>
     <link rel="stylesheet" href="style.css">
+
   </head>
+
+
   <body>
+
+    <h2>Please type in a number:</h2>
     <input class="starter" id="input" placeholder="input"/>
-    <h2>output:</h2>
-    <p class="starter" id="output"></p>
+
+    <h2>Output:</h2>
+    <div id="output"></div>
+    <!-- <p class="starter" id="output"></p> -->
+
+
     <script>
       document.querySelector('#input').addEventListener('change', function(event){
         var currentInput = event.target.value;
-        inputHappened(currentInput)
+        inputHappened(currentInput);
+        document.getElementById('input').value = "";
+
       });
 
     </script>
     <script src="script.js"></script>
+
+
+
+
   </body>
 </html>
