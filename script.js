@@ -1,23 +1,28 @@
-// nothing happens when only one number input
-// 1 1, 3 1 nothing happens
+// TRIANGLE NEXT
 
 var inputHappened = function(currentInput){
   //take multiple inputs, split into an array
   let inputArr = currentInput.split(" ")
+
+  let pineapple = "🍍"
+  let pineappleContainer = []
+  let pineappleParagraph = document.createElement("p")
+  let pineapplesAndRows
 //check if command is to clear
   if (inputArr[0] === "clear"){
     return inputArr
   }
 
-  let pineapple = "🍍"
-  let pineappleContainer = []
-  let pineappleParagraph = document.createElement("p")
+  if (inputArr[0] === "triangle"){
+  }
+
   // iterate input array and push same amount of pineapples as input
   for (let i = 0; i < inputArr[0]; i++){
     pineappleContainer.push(pineapple)
   }
   // set paragraph to amount of pineapples as a string
   pineappleParagraph.innerHTML = `${pineappleContainer.join("")}`
+
   // create new pineApple/row array
   if (inputArr[1] === undefined) {
     pineapplesAndRows = pineappleParagraph
@@ -31,18 +36,26 @@ var inputHappened = function(currentInput){
 };
 
 var display = function(stuffToDisplay){
+  let pineapple = `🍍`
   // take pineapple paragraph as parameter
   console.log(stuffToDisplay)
   // your DOM manipulation code here
   let displayElement = document.querySelector("#output")
+
+  if (stuffToDisplay[0] === "triangle") {
+    
+  }
+
   // check if not clear, append
-  if (stuffToDisplay[0] !== "clear") {
+  if (stuffToDisplay[0] !== "clear" && stuffToDisplay[0] !== "triangle") {
+    // if row is more than 1, loop and append multiple rows
     if (stuffToDisplay[1] > 1) {
       for (let i = 1; i < stuffToDisplay[1]; i++) {
         displayElement.appendChild(stuffToDisplay[0])
         displayElement.appendChild(stuffToDisplay[0].cloneNode(true))
       }
     } else {
+      // else just render the pineapples
       displayElement.appendChild(stuffToDisplay[0])
     }
   }
