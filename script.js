@@ -1,8 +1,16 @@
 console.log("hello script js");
-
+var a=""
+var outputField=document.querySelector('#output');
+var inputField=document.querySelector('#input');
 var inputHappened = function(currentInput){
-  console.log( currentInput );
-  display( "WOW SOMETHING HAPPENED" );
+	var b = document.createElement('p');
+	for (i = 0; i < currentInput; i++) {
+		a = a + "🍍";
+	}
+	b.innerHTML=a;
+	outputField.appendChild(b);
+	inputField.value = "";
+	a="";
 };
 
 var display = function(stuffToDisplay){
