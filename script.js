@@ -3,7 +3,7 @@ console.log("hello script js");
 var inputHappened = function(currentInput){
   // console.log( currentInput );
   // display( "WOW SOMETHING HAPPENED" );
-  drawPineapple(currentInput);
+  drawVegetable(currentInput);
   clearInput(currentInput);
   clearInput2(currentInput);
 };
@@ -22,4 +22,21 @@ var drawVegetable = function(currentInput) {
         console.log(currentInput);
         vegetable.textContent += "🥬";
     };
+    var clearInput = function(currentInput) {
+    if (currentInput === "clear") {
+        location.reload();
+    }
+};
+
+var clearInput2 = function(clearInput) {
+    if (currentInput) {
+
+        "Greetings friend"
+
+    }
+};
+
+var listVegetable = output.childNodes;
+listVegetable.removeChild(listVegetable.childNodes[0]);
+
 }
