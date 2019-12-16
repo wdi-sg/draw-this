@@ -20,16 +20,24 @@ var display = function(stuffToDisplay){
     output.appendChild(pTag);
    return emoji;
 };
+var multiply= function(num1, num2){
+    for(var i = 0; i < num2;i++){
+              display(num1);
+    }
+}
 var inputHappened = function(currentInput){
   console.log( currentInput);
   //if it can be split
-  var wordArray = currentInput.split(" ");
-  var num = parseInt(wordArray[1]);
-  if(wordArray[0] === 'clear' && !isNaN(num)){
+  var inputArray = currentInput.split(" ");
+  var num = parseInt(inputArray[1]);
+  if(inputArray.length === 2){
+  if(inputArray[0] === 'clear' && !isNaN(num)){
     deleteRow(num);
+  }else if(!isNaN(parseInt(inputArray[0])) && !isNaN(parseInt(inputArray[1]))){
+    multiply(parseInt(inputArray[0]),parseInt(inputArray[1]) );
   }
-  currentInput = parseInt(currentInput);
-  if(!isNaN(currentInput)){
+  }
+  else if(!isNaN(parseInt(currentInput))&&inputArray.length !== 2){
   display(currentInput);
     }
 }
