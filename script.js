@@ -21,9 +21,9 @@ var inputHappened = function(currentInput){
   console.log(displayPineapple);
 document.getElementById('output').appendChild(displayPineapple) // adding pineapple emojis into the output box, document.getElementById('output') is in html there
 
-if (currentInput === 'clear') {
-    var clearText = document.getElementById('output').removeChild(displayPineapple);
-    return clearText;
-}
+// if (currentInput === 'clear') {
+//     var clearText = document.getElementById('output').removeChild(displayPineapple);
+//     return clearText;
+// }
 
 };
