@@ -3,7 +3,8 @@ console.log("emoji assignment");
 //global variables
 var stuff = document.getElementById("output");
 var totalEmoji = "";
-var emoji = "🍣"
+var emoji = ""
+var enteredEmoji = false;
 
 
 //splits the input into an array
@@ -20,6 +21,10 @@ var clear = function(input){ //
 
 // input box
 var inputHappened = function(currentInput){
+    if (enteredEmoji === false){
+        emoji = currentInput;
+        enteredEmoji = true;
+    }
     var array = splitWord(currentInput);
     var arrayNum = parseInt(array[1]);
     console.log(typeof arrayNum)
