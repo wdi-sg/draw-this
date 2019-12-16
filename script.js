@@ -21,6 +21,7 @@ var inputHappened = function(currentInput){
   // create new pineApple/row array
   if (inputArr[1] === undefined) {
     pineapplesAndRows = pineappleParagraph
+    console.log(inputArr[1])
   } else {
     pineapplesAndRows = [pineappleParagraph, inputArr[1]]
   }
@@ -36,18 +37,19 @@ var display = function(stuffToDisplay){
   let displayElement = document.querySelector("#output")
   // check if not clear, append
   if (stuffToDisplay[0] !== "clear") {
-    if (stuffToDisplay.length > 1) {
+    if (stuffToDisplay[1] > 1) {
       for (let i = 1; i < stuffToDisplay[1]; i++) {
         displayElement.appendChild(stuffToDisplay[0])
         displayElement.appendChild(stuffToDisplay[0].cloneNode(true))
       }
     } else {
-      displayElement.appendChild(stuffToDisplay)
+      displayElement.appendChild(stuffToDisplay[0])
     }
-
   }
   // if input is clear, remove node as in second number
-  if (stuffToDisplay[0] === "clear") {
+  if (stuffToDisplay[0] === "clear" && stuffToDisplay[1] === "all") {
+    displayElement.innerHTML = ""
+  } else if (stuffToDisplay[0] === "clear") {
     displayElement.removeChild(displayElement.childNodes[stuffToDisplay[1]])
   }
   document.querySelector("#input").value = ""
