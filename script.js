@@ -1,4 +1,5 @@
-
+// nothing happens when only one number input
+// 1 1, 3 1 nothing happens
 
 var inputHappened = function(currentInput){
   //take multiple inputs, split into an array
@@ -17,18 +18,33 @@ var inputHappened = function(currentInput){
   }
   // set paragraph to amount of pineapples as a string
   pineappleParagraph.innerHTML = `${pineappleContainer.join("")}`
-  // return the paragraph
-  return pineappleParagraph
+  // create new pineApple/row array
+  if (inputArr[1] === undefined) {
+    pineapplesAndRows = pineappleParagraph
+  } else {
+    pineapplesAndRows = [pineappleParagraph, inputArr[1]]
+  }
+
+  // return the paragraph array
+  return pineapplesAndRows
 };
 
 var display = function(stuffToDisplay){
   // take pineapple paragraph as parameter
-
+  console.log(stuffToDisplay)
   // your DOM manipulation code here
   let displayElement = document.querySelector("#output")
   // check if not clear, append
   if (stuffToDisplay[0] !== "clear") {
-    displayElement.appendChild(stuffToDisplay)
+    if (stuffToDisplay.length > 1) {
+      for (let i = 1; i < stuffToDisplay[1]; i++) {
+        displayElement.appendChild(stuffToDisplay[0])
+        displayElement.appendChild(stuffToDisplay[0].cloneNode(true))
+      }
+    } else {
+      displayElement.appendChild(stuffToDisplay)
+    }
+
   }
   // if input is clear, remove node as in second number
   if (stuffToDisplay[0] === "clear") {
