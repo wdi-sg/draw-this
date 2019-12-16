@@ -2,27 +2,42 @@ console.log("hello script js");
 
 var outputDisplay = document.querySelector('#output');
 
-var emojiUsed = "🍍";
+var emojiUsed;
 
 var inputHappened = function(currentInput){
   document.querySelector('#input').value = ""
-  currentInput = currentInput.trim().toLowerCase();
-  splitInput = currentInput.split(' ');
-  console.log(splitInput);
+  splitInput = currentInput.trim().split(' ');
 
-  if (splitInput[0] === 'clear'){
-    integerInput = parseInt(splitInput[1]);
+  if (!emojiUsed) {
+    outputDisplay.innerText = "";
+    emojiUsed = splitInput[0];
+    return;
+ }
+
+for (let i = 0; i < splitInput.length; i++) {
+  splitInput[i] = sanitizeInput(splitInput[i]);
+  }
+
+  if (splitInput[0] === 'clear') {
+    splitInput.shift();
+    splitInput.sort();
+    for (let i = splitInput.length - 1; i >= 0; i-- ) {
+    integerInput = parseInt(splitInput[i]);
+    console.log(integerInput);
     if (integerInput) {
-      deleteRow(splitInput[1]);
-      return; 
+      deleteRow(integerInput); 
+      }
+    }
+    return;
+  }
+
+  for (let i = 0; i < splitInput.length; i++) {
+    integerInput = parseInt(splitInput[i]);
+    if (integerInput) {
+      display(emojiRow(integerInput));
     }
   }
 
-  integerInput = parseInt(splitInput[0]);
-  if (integerInput) {
-    display(emojiRow(integerInput));
-    return;
-  }
 
   return "error";
 
@@ -48,3 +63,12 @@ var deleteRow = function(rowNumber) {
   }
 };
 
+var sanitizeInput = function(currentInput) {
+  return currentInput.trim().toLowerCase();
+}
+
+var firstTimeRun = function() {
+  outputDisplay.innerText = "Please input a single character or emoji to begin."
+}
+
+firstTimeRun();
