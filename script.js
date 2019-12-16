@@ -1,6 +1,7 @@
-// TRIANGLE NEXT
+// nothing happens when only one number input
+// 1 1, 3 1 nothing happens
 
-var inputHappened = function(currentInput){
+var inputHappened = function (currentInput) {
   //take multiple inputs, split into an array
   let inputArr = currentInput.split(" ")
 
@@ -8,16 +9,18 @@ var inputHappened = function(currentInput){
   let pineappleContainer = []
   let pineappleParagraph = document.createElement("p")
   let pineapplesAndRows
-//check if command is to clear
-  if (inputArr[0] === "clear"){
+  //check if command is to clear
+  if (inputArr[0] === "clear") {
     return inputArr
   }
 
-  if (inputArr[0] === "triangle"){
+  if (inputArr[0] === "triangle") {
+    inputArr[2] = pineappleParagraph
+    return inputArr
   }
 
   // iterate input array and push same amount of pineapples as input
-  for (let i = 0; i < inputArr[0]; i++){
+  for (let i = 0; i < inputArr[0]; i++) {
     pineappleContainer.push(pineapple)
   }
   // set paragraph to amount of pineapples as a string
@@ -35,15 +38,25 @@ var inputHappened = function(currentInput){
   return pineapplesAndRows
 };
 
-var display = function(stuffToDisplay){
-  let pineapple = `🍍`
+var display = function (stuffToDisplay) {
+  
   // take pineapple paragraph as parameter
   console.log(stuffToDisplay)
   // your DOM manipulation code here
   let displayElement = document.querySelector("#output")
 
   if (stuffToDisplay[0] === "triangle") {
-    
+    let pineapple = `🍍`
+    for (var i = 1; i <= 1; i++) {
+      // Enter the first for loop for the number of lines
+      for (var j = 1; j <= stuffToDisplay[1]; j++) {
+        // Enter the second loop to figure how many *'s to print based on the current line number in i. So the 1st line will have 1 *, the second line will have 2 *s and so on.
+        stuffToDisplay[2].innerHTML = `<p>${pineapple}</p>`
+        displayElement.appendChild(stuffToDisplay[2].cloneNode(true))
+        console.log(pineapple)
+        pineapple += "🍍"
+      }
+    }
   }
 
   // check if not clear, append
