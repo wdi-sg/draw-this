@@ -1,16 +1,24 @@
 <html>
   <head>
     <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
   </head>
   <body>
     <input class="starter" id="input" placeholder="input"/>
     <h2>output:</h2>
-    <p class="starter" id="output"></p>
+    <p>🍍😀😈</p>
+    <p class="starter" id="output">Enter emoji/ Character</p>
     <script>
+      //What happens upon a change in input.
       document.querySelector('#input').addEventListener('change', function(event){
         var currentInput = event.target.value;
-        inputHappened(currentInput)
+        var output = inputHappened(currentInput);
+        display(output);
+        document.querySelector('#input').value=""
       });
+
+      // This displays the results into output.
+     
 
     </script>
     <script src="script.js"></script>
