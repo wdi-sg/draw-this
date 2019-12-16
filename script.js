@@ -5,7 +5,7 @@ var inputHappened = function(currentInput){
   // display( "WOW SOMETHING HAPPENED" );
   drawVegetable(currentInput);
   clearInput(currentInput);
-  clearInput2(currentInput);
+  // clearInput2(currentInput);
 };
 
 var display = function(stuffToDisplay){
@@ -28,15 +28,15 @@ var drawVegetable = function(currentInput) {
     }
 };
 
-var clearInput2 = function(clearInput) {
-    if (currentInput) {
+// var clearInput2 = function(clearInput) {
+//     if (currentInput) {
 
-        "Greetings friend"
+//         "Greetings friend"
 
-    }
-};
+//     }
+// };
 
-var listVegetable = output.childNodes;
-listVegetable.removeChild(listVegetable.childNodes[0]);
+// var listVegetable = output.childNodes;
+// listVegetable.removeChild(listVegetable.childNodes[0]);
 
 }
