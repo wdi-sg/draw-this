@@ -1,8 +1,10 @@
 console.log("hello script js");
 
-var deleteRow = function(){
+var deleteRow = function(num){
     var output = document.querySelectorAll("#output p");
+    if(output.length >= num){
      output[num-1].remove("#output p");
+    }
 }
 var display = function(stuffToDisplay){
   // your DOM manipulation code here
@@ -24,7 +26,7 @@ var inputHappened = function(currentInput){
   var wordArray = currentInput.split(" ");
   var num = parseInt(wordArray[1]);
   if(wordArray[0] === 'clear' && !isNaN(num)){
-    deleteRow();
+    deleteRow(num);
   }
   currentInput = parseInt(currentInput);
   if(!isNaN(currentInput)){
