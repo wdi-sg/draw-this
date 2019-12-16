@@ -7,5 +7,6 @@ var inputHappened = function(currentInput){
 
 var display = function(stuffToDisplay){
   // your DOM manipulation code here
-  
+
 };
+.
