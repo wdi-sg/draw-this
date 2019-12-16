@@ -1,5 +1,6 @@
 console.log("hello script js");
-
+// var askEmoji = true;
+// var emoji = "";
 var deleteRow = function(num){
     var output = document.querySelectorAll("#output p");
     if(output.length >= num){
@@ -12,7 +13,7 @@ var display = function(stuffToDisplay){
     var emoji = "";
 
     for(var i = 0; i< stuffToDisplay;i++){
-        emoji += "😃";
+        emoji += "😁";
     }
     pTag.className = "emoji";
     pTag.innerText = emoji;
@@ -25,8 +26,17 @@ var multiply= function(num1, num2){
               display(num1);
     }
 }
+
+// document.querySelector("#output").innerText = "Enter an emoji";
+
 var inputHappened = function(currentInput){
   console.log( currentInput);
+//   if(askEmoji && currentInput != ""){
+//     emoji = currentInput;
+//     askEmoji = false;
+//     document.querySelector("#output").innerText = "Enter a number";
+//   }
+// else{
   //if it can be split
   var inputArray = currentInput.split(" ");
   var num = parseInt(inputArray[1]);
@@ -40,4 +50,5 @@ var inputHappened = function(currentInput){
   else if(!isNaN(parseInt(currentInput))&&inputArray.length !== 2){
   display(currentInput);
     }
+//}
 }
