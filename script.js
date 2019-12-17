@@ -4,7 +4,7 @@ var inputHappened = function(currentInput){
   // console.log( currentInput );
   // display( "WOW SOMETHING HAPPENED" );
   drawVegetable(currentInput);
-  clearInput(currentInput);
+  // clearInput(currentInput);
   // clearInput2(currentInput);
 };
 
@@ -16,27 +16,27 @@ var display = function(stuffToDisplay){
 };
 
 var drawVegetable = function(currentInput) {
+    var output = document.querySelector('#output');
     let vegetable = document.createElement("p");
-
     for (let i = 0; i < currentInput; i++) {
-        console.log(currentInput);
-        vegetable.textContent += "🥬";
+        console.log(vegetable);
+        output.textContent += "🥬";
+        output.appendChild(vegetable);
     };
-    var clearInput = function(currentInput) {
-    if (currentInput === "clear") {
-        location.reload();
+    // output.appendChild(vegetable);
+    // var clearInput = function(currentInput) {
+    // if (currentInput === "clear") {
+    //     location.reload();
+    // }
+};
+
+var clearInput2 = function(clearInput) {
+    if (currentInput) {
+
+        "Greetings friend"
+
     }
 };
 
-// var clearInput2 = function(clearInput) {
-//     if (currentInput) {
-
-//         "Greetings friend"
-
-//     }
-// };
-
 // var listVegetable = output.childNodes;
 // listVegetable.removeChild(listVegetable.childNodes[0]);
-
-}
