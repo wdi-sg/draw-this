@@ -17,15 +17,18 @@ var inputHappened = function(currentInput){
 
   }
   displayPineapple.innerText = pineapple // the pineapple will appear inside the p tag being created
-  // console.log(pineapple);
-  // console.log(displayPineapple);
-document.getElementById('output').appendChild(displayPineapple);
-// function clearText() {
-//     if (currentInput === 'clear'); {
-//         var myobj = document.getElementByClassName("starter");
-//     myobj.remove();
-//     }
+console.log(pineapple);
+console.log(displayPineapple);
+document.getElementById("'output'").appendChild(displayPineapple); // adding pineapple emojis into the output box, document.getElementById('output') is in html there
+
+
+
+     if (currentInput === "'clear'") {
+       document.getElementById('output').innerHTML = "";
+       //.innerHTML is clearing the elements in the
+
+   };
+
 // }; to work on clear part
 
-
-};// adding pineapple emojis into the output box, document.getElementById('output') is in html there
+};
