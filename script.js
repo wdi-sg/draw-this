@@ -3,6 +3,7 @@ console.log("hello script js");
 var pineapple = "🍍"
 var pineColumns = "";
 var userInput;
+var splittedInput;
 
 
 var clearInput = function() {
@@ -10,6 +11,7 @@ var clearInput = function() {
 }
 
 var inputHappened = function(currentInput){
+    console.log(typeof currentInput)
     userInput = parseInt(currentInput);
     if (userInput > 0){
         makePara();
@@ -17,10 +19,13 @@ var inputHappened = function(currentInput){
         insertPineapples();
         clearInput();
         pineColumns = "";
-    } else if (currentInput.toLowerCase() === "clear") {
-        clearPineapples();
+    }
+    if (currentInput.toLowerCase() === "clear all") {
+        clearPineapplesAll();
         clearInput();
     }
+    if (typeof currentInput === "String");
+    splitInput(userInput);
 };
 
 var display = function(stuffToDisplay){
@@ -38,7 +43,7 @@ var makePara = function() {
 
 var makePineaples = function (numPine) {
     for ( i = 0 ; i < numPine ; i++ ){
-        pineColumns = pineColumns + pineapple;
+        pineColumns += pineapple;
     }
     return pineColumns;
 }
@@ -47,7 +52,13 @@ var insertPineapples = function () {
     document.querySelector("p:last-child").innerText = pineColumns;
 }
 
-var clearPineapples = function () {
+var clearPineapplesAll = function () {
     var output = document.querySelector("#output");
     output.innerHTML = "";
+}
+
+var splitInput = function (userInput){
+    splittedInput = String(userInput)
+    splittedInput = splittedInput.split(" ");
+    return splittedInput;
 }
