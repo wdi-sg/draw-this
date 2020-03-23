@@ -18,32 +18,56 @@ var makePineappleArray = function() {
     output.innerHTML = pineappleArray[0];
 }
 
+var guider = "start";
 
+var emoji;
+var emojiThree = "<p>" + emoji + emoji + emoji + "</p>";
+var emojiTwo = "<p>" + emoji + emoji + "</p>";
+
+var userEmoji = function(userInput) {
+    emoji = userInput;
+    emojiThree = "<p>" + emoji + emoji + emoji + "</p>";
+    emojiTwo = "<p>" + emoji + emoji + "</p>";
+};
+
+
+input.placeholder = "What character or emoji do you want to draw?";
 
 var inputHappened = function(currentInput){
   console.log(currentInput);
   resetInput();
-  if (currentInput === "3") {
-    display("<p>🍍🍍🍍</p>");
+  input.placeholder = "how many emoji?";
+
+  if (currentInput !== "" && guider === "start"){
+    userEmoji(currentInput);
+    guider = "";
+  } else if (guider === "start") {
+    emoji = "🍍"
+    emojiTwo = "<p>" + emoji + emoji + "</p>";
+    emojiTwo = "<p>" + emoji + emoji + "</p>";
+  };
+
+  if (currentInput === "3" && guider === ""){
+    display(emojiThree);
   };
 
   resetInput();
 
-  if (currentInput === "2") {
-    display("<p>🍍🍍</p>");
+  if (currentInput === "2" && guider === ""){
+    display(emojiTwo);
   };
 
-  if (currentInput.toLowerCase() === 'clear') {
+  if (currentInput.toLowerCase() === 'clear'){
     resetOutput();
   };
 
-  if (currentInput.toLowerCase() === 'clear 2') {
+  if (currentInput.toLowerCase() === 'clear 2'){
     makePineappleArray();
-  }
+  };
 
-  if (currentInput === "2 2") {
+  if (currentInput === "2 2"){
     display("<p>🍍🍍</p>") + display("<p>🍍🍍</p>");
-  }
+  };
 };
 
 var display = function(stuffToDisplay){
