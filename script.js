@@ -9,7 +9,12 @@ var inputHappened = function(currentInput){
     }
     display();
     pineappleHolder = [];
+    if (currentInput.toUpperCase() === "CLEAR"){
+    var retrieveOutput = document.querySelector('#output');
+    retrieveOutput.innerHTML = "";
+    }
 };
+
 
 var display = function(stuffToDisplay){
 var destination = document.getElementById("output");
