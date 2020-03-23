@@ -10,13 +10,13 @@ var display = function(stuffToDisplay){
   // your DOM manipulation code here
   var pineappleRow = document.createElement("p");
   var pineappleAmount = "";
-  var clearArray = stuffToDisplay.split(" ");
+  var wordArray = stuffToDisplay.split(" ");
   pineappleRow.className = "pineapple";
-  if(clearArray[0] === "clear"){
+  if(wordArray[0] === "clear"){
     var i = 0
     var clearPineapple = document.getElementsByClassName("pineapple");
-    if(clearArray.length === 2){
-      var clearValue = parseInt(clearArray[1]);
+    if(wordArray.length === 2){
+      var clearValue = parseInt(wordArray[1]);
       if(!isNaN(clearValue)){
           clearPineapple[clearValue - 1].parentNode.removeChild(clearPineapple[clearValue - 1]);
       }
@@ -27,13 +27,22 @@ var display = function(stuffToDisplay){
     }
   }
 
-  var value = parseInt(stuffToDisplay);
+  var value = parseInt(wordArray[0]);
   for (var i = 0; i < value; i++){
     pineappleAmount = pineappleAmount + "🍍";
   }
   pineappleRow.innerHTML = pineappleAmount;
   output.innerHTML = pineappleAmount;
+  debugger;
+  if(!isNaN(wordArray[1])){
+    document.body.appendChild(pineappleRow);
+    for(var i = 0; i < wordArray[1] - 1; i++){
+      var cln = pineappleRow.cloneNode(true);
+      document.body.appendChild(cln);
+    }
+  }else {
   document.body.appendChild(pineappleRow);
+  }
   document.getElementById("input").value = "";
 
 };
