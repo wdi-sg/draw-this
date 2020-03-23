@@ -8,16 +8,21 @@ const init = function(){
 
 
 var inputHappened = function(currentInput){
-  if(currentInput === "clear"){
+  const inputSplit = currentInput.split(" ")
+
+  if(inputSplit[0] === "clear" && isNaN(parseInt(inputSplit[1])) ){
     clear();
   }
+  else if(inputSplit[0] === "clear" && !isNaN(parseInt(inputSplit[1]))){
+    clearRow(parseInt(inputSplit[1]));
+  }
+
 
   console.log( currentInput );
   display( currentInput );
 };
 
 var display = function(stuffToDisplay){
-  // your DOM manipulation code here
   const body = document.querySelector('body');
   const input = document.createElement('p');
   input.className = "inputClass";
@@ -36,4 +41,9 @@ var clear = function(){
     for(let p = 0; p<para.length; p++){
         para[p].textContent = "";
     }
+}
+
+var clearRow = function(num){
+    const para = document.querySelectorAll('.inputClass');
+    para[num-1].textContent = "";
 }
