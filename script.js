@@ -4,7 +4,7 @@ chooseEmoji();
 var emojiSelected = false;
 var selectedEmoji = "";
 
-// Part 3 - emoji selection
+// Part 4 - triangle function
 
 // Function on input + enter
 var inputHappened = function(currentInput) {
@@ -28,6 +28,8 @@ var inputHappened = function(currentInput) {
         } else if (!isNaN(args[0]) && !isNaN(args[1])) {
             display(args[0]);
             display(args[1]);
+        } else if (args[0] == "triangle" && !isNaN(args[1])) {
+            triangle(args[1]);
         } else {
             //do nothing
         }
@@ -135,4 +137,10 @@ function selectEmoji(input) {
             break;
     }
 
+}
+
+function triangle(height){
+    for(i=1;i<=height;i++){
+        display(i);
+    }
 }
