@@ -7,16 +7,24 @@ var inputHappened = function(currentInput){
       clearDisplay();
     }
     num = Number(inArr[0]);
-    outStr = emojiString(num);
-    display(outStr);
+    outStr = emojiString(emoji, num);
+    display(createRow(outStr));
   } else {
     command = inArr[0];
     num = Number(inArr[1]);
 
+    if (!isNaN(command)) {
+      console.log("trying here");
+      while (inArr.length > 0) {
+        outStr = emojiString(emoji, inArr.shift());
+        display(createRow(outStr));
+      }
+    }
+
     switch (command) {
     case "draw":
-      outStr = emojiString(num);
-      display(outStr);
+      outStr = emojiString(emoji, num);
+      display(createRow(outStr));
       break;
     case "clear":
       clearRow(num);
@@ -29,9 +37,7 @@ var inputHappened = function(currentInput){
 
 // input/display helper functions
 var display = function(stuffToDisplay){
-  var outElement = document.createElement("p");
-  outElement.innerText = stuffToDisplay;
-  document.querySelector("#output").appendChild(outElement);
+  document.querySelector("#output").appendChild(stuffToDisplay);
 };
 
 var clearInput = function () {
@@ -40,16 +46,22 @@ var clearInput = function () {
 
 var clearDisplay = function () {
   document.querySelector("#output").innerHTML = "";
-}
+};
 
 var clearRow = function (row) {
   var rows = document.querySelectorAll("#output p");
   console.log(rows);
-  rows[row].remove();
-}
+  rows[row - 1].remove();
+};
 
 // string builder helper functions
-var emojiString = function (times) {
-  var emoji = "🍍";
-  return emoji.repeat(times);
+var createRow = function (innerStr) {
+  var p = document.createElement("p");
+  p.innerText = innerStr;
+  return p;
 }
+
+var emojiString = function (emoji, times) {
+  var emoji = emoji;
+  return emoji.repeat(times);
+};
