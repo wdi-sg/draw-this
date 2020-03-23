@@ -7,5 +7,13 @@ var inputHappened = function(currentInput){
 
 var display = function(stuffToDisplay){
   // your DOM manipulation code here
-  
+  var pineappleRow = document.createELement("p");
+  var value = parseInt(stuffToDisplay);
+  for (var i =0; i<value;i++) {
+  	pineappleAmt = pineappleAmt + "	🍍";
+
+  }
+  pineappleRow.innerHTML=pineappleAmt;
+  ouput.innerHTML=pineappleAmt;
+  document.body.appendChild(pineappleRow);
 };
