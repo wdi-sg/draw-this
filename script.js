@@ -50,9 +50,7 @@ var inputHappened = function (currentInput) {
       break;
     case "clear":
       clearRow(num);
-      return;
-    default:
-      return;
+      break;
     }
   }
 };
