@@ -5,7 +5,8 @@ var inputArray;
 var numberOfCurrentRow=0;
 var rowToShoot;
     var output=document.getElementById("output");
-
+var symbol="🍍";
+var questionCount=0;
 //console.log("hello script js");
  //🍍 onglai
 // for checking input
@@ -23,12 +24,12 @@ InsertRow=(pineappleInsert)=>{
     {
         if(i===0)
         {
-            newRowItem=["🍍"];
+            newRowItem=[symbol];
 
         }
         else
         {
-            newRowItem.push("🍍")
+            newRowItem.push(symbol)
         }
     }
     textDisplayed=newRowItem.join('');
@@ -75,12 +76,12 @@ var drawSquare=(sides)=>{
     {
         if(i===0)
         {
-            newRowItem=["🍍"];
+            newRowItem=[symbol];
 
         }
         else
         {
-            newRowItem.push("🍍")
+            newRowItem.push(symbol)
         }
     }
      textDisplayed=newRowItem.join('');
@@ -90,11 +91,27 @@ var drawSquare=(sides)=>{
     newParagraph.innerText=textDisplayed;
     output.appendChild(newParagraph);}
 }
-
+//Change Message
+var changeMessage=()=>
+{
+    var instruction=document.getElementById("instructions");
+    instruction.innerText="Type a single digit to insert row.\n Type clear to clear all.\n Type clear with number to clear row.\n Type 2 similar numbers with a space to draw a square"
+}
 
 //Where the magic happens
 var inputHappened = function(currentInput){
-    inputArray=currentInput.split(' ');
+if(questionCount===0)
+{
+    //change message
+    if(currentInput!=="default")
+    {
+        symbol=currentInput;
+    }
+    changeMessage();
+    questionCount++;
+}
+else if (questionCount===1)
+{    inputArray=currentInput.split(' ');
   //console.log( inputArray );
  //to note if double digit,, double array
  //for single word input
@@ -135,7 +152,7 @@ var inputHappened = function(currentInput){
             drawSquare(squareNumber);
         }
     }
-  }
+  }}
 //  display( "WOW SOMETHING HAPPENED" );
   inputArray=[];
 };
