@@ -1,6 +1,10 @@
 console.log("hello script js");
 
 var inputHappened = function(currentInput){
+  if(currentInput === "clear"){
+    var output = document.querySelector('#output');
+    output.innerHTML = "";
+  }
   console.log( currentInput );
   display( currentInput);
 };
