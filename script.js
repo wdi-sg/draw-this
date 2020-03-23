@@ -1,7 +1,8 @@
+outputField = document.querySelector("#output");
 outputHeader = document.querySelector("h2");
 
 //Input validation
-var invalidMessage = document.createTextNode(` Please enter a positive whole number to print ${charToPrint}'s, or type in "clear" to get rid of them!`)
+var invalidMessage = document.createTextNode(` Please enter a positive number to print the characters, or type in "clear" to get rid of them. Read the rules for more details.`)
 
 displayInvalidMessage = () => {
     outputHeader.append(invalidMessage);
