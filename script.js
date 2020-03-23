@@ -52,26 +52,56 @@ var mainFunction = function(){
 }
 
 var moveAndDraw = function(direction, distance){
+    var outOfBounds = document.createElement("p");
+    outOfBounds.innerHTML = "<p>That's out of bounds! Choose another move</p>";
     if (direction === "up"){
-        for (let i = 0; i < distance; i++){
-            square[cursorRow - i][cursorColumn] = emoji;
+        if ((cursorRow - (distance - 1)) < 0){
+            displaySquare();
+            display(outOfBounds);
+            return
+        } else {
+            for (let i = 0; i < distance; i++){
+                square[cursorRow - i][cursorColumn] = emoji;
+            }
+            cursorRow -= (distance - 1);
         }
-        cursorRow -= (distance - 1);
+
     } else if (direction === "down"){
-        for (let i = 0; i < distance; i++){
-            square[cursorRow + i][cursorColumn] = emoji;
+        if ((cursorRow + (distance - 1)) > 3){
+            displaySquare();
+            display(outOfBounds);
+            return
+        } else {
+            for (let i = 0; i < distance; i++){
+                square[cursorRow + i][cursorColumn] = emoji;
+            }
+            cursorRow += (distance - 1);
         }
-        cursorRow += (distance - 1);
+
     } else if (direction === "right"){
-        for (let i = 0; i < distance; i++){
-            square[cursorRow][cursorColumn + i] = emoji;
+        if ((cursorColumn + (distance - 1)) > 3){
+            displaySquare();
+            display(outOfBounds);
+            return
+        } else {
+            for (let i = 0; i < distance; i++){
+                square[cursorRow][cursorColumn + i] = emoji;
+            }
+            cursorColumn += (distance - 1);
         }
-        cursorColumn += (distance - 1);
+
     } else if (direction === "left") {
-        for (let i = 0; i < distance; i++){
-            square[cursorRow][cursorColumn - i] = emoji;
+        if ((cursorColumn - (distance - 1)) < 0){
+            displaySquare();
+            display(outOfBounds);
+            return
+        } else {
+            for (let i = 0; i < distance; i++){
+                square[cursorRow][cursorColumn - i] = emoji;
+            }
+            cursorColumn += (distance - 1);
         }
-        cursorColumn += (distance - 1);
+
     } else {
         console.log("move and draw error");
     }
