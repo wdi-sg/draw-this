@@ -7,7 +7,6 @@ var inputHappened = function(currentInput){
 
 //variables
 let inputNumArray = [];
-let clearArray = [];
 let emoji = "🍍";
 let emojiArray = [];
 
@@ -78,4 +77,6 @@ var inputHappened = function(currentInput) {
     emojiArrayPrint();
     display();
   }
-};
+  // else if (currentInputSplit.length === 2 && currentInputSplit[0] === "rtriangle") {
+  // }
+}
