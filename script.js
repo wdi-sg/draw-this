@@ -13,6 +13,7 @@ var inputHappened = function(currentInput){
     var retrieveOutput = document.querySelector('#output');
     retrieveOutput.innerHTML = "";
     }
+    document.getElementById('input').value = "";
 };
 
 
