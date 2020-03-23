@@ -16,6 +16,8 @@ var inputHappened = function(currentInput){
 
     if(currentInput === 'clear') {
         clear();
+    } else if(currentInput === 'clear 2') {
+        clear2();
     } else if (isNaN(currentInput) === false) {
         reset();
         display( currentInput );
@@ -61,4 +63,12 @@ var pineappleCount = function(num) {
         pineappleStr = pineappleStr + col;
     }
     return pineappleStr;
+}
+
+//Part 2
+
+var clear2 = function () {
+    var parent1 = document.getElementById('output');
+    var secondRow = document.querySelectorAll('p')[2];
+    var clearSecondRow = parent1.removeChild(secondRow);
 }
