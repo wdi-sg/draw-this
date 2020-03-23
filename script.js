@@ -5,6 +5,9 @@ var inputArray;
 output.innerHTML = "<p>What emoji would you like to use?</p>";
 var emoji;
 var status = "beginning";
+var square;
+var cursorRow = 0;
+var cursorColumn = 0;
 
 //Initial Flow
 var inputHappened = function(currentInput){
@@ -35,11 +38,72 @@ var mainFunction = function(){
         generateTriangle(inputArray[1]);
     } else if (inputArray.includes('rtriangle')){
         generateRTriangle(inputArray[1]);
+    } else if (inputArray.includes('square')){
+        generateSquare();
+    } else if (inputArray.includes('cursor')){
+        cursorShow();
+    } else if (inputArray.includes('move')){
+        moveAndDraw(inputArray[1], parseInt(inputArray[2]));
     } else {
       for (let num of inputArray){
         generateEmojis(num);
       }
     }
+}
+
+var moveAndDraw = function(direction, distance){
+    if (direction === "up"){
+        for (let i = 0; i < distance; i++){
+            square[cursorRow - i][cursorColumn] = emoji;
+        }
+        cursorRow -= (distance - 1);
+    } else if (direction === "down"){
+        for (let i = 0; i < distance; i++){
+            square[cursorRow + i][cursorColumn] = emoji;
+        }
+        cursorRow += (distance - 1);
+    } else if (direction === "right"){
+        for (let i = 0; i < distance; i++){
+            square[cursorRow][cursorColumn + i] = emoji;
+        }
+        cursorColumn += (distance - 1);
+    } else if (direction === "left") {
+        for (let i = 0; i < distance; i++){
+            square[cursorRow][cursorColumn - i] = emoji;
+        }
+        cursorColumn += (distance - 1);
+    } else {
+        console.log("move and draw error");
+    }
+    displaySquare();
+}
+
+
+var cursorShow = function(){
+    square[cursorRow][cursorColumn] = "⬛";
+    displaySquare();
+}
+
+var displaySquare = function(){
+    clearOutput();
+    for (let i = 0; i < 4; i++){
+        var displayLine = document.createElement("div");
+        displayLine.innerHTML = square[i].join(" ");
+        display(displayLine);
+    }
+}
+
+var generateSquare = function(){
+    var space = "🟦";
+    square = [];
+    for (let i = 0; i < 4; i++){
+        var subArr = [];
+        for (let j = 0; j < 4; j++){
+            subArr.push(space);
+        }
+        square.push(subArr);
+    }
+    displaySquare();
 }
 
 var generateTriangle = function(heightAndBase){
