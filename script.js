@@ -14,29 +14,38 @@ let emojiArray = [];
 
 var display = function() {
   // your DOM manipulation code here
-  let p = document.createElement('p');
-  p.textContent = emojiArray[emojiArray.length - 1];
-  let output = document.getElementById('output');
-  output.appendChild(p);
+  clearAllDOM();
+  for (let i = 0; i < emojiArray.length; i++) {
+    let p = document.createElement("p");
+    p.textContent = emojiArray[i];
+    let output = document.getElementById("output");
+    output.appendChild(p);
+  }
 };
 
-var emojiArrayPrint = function(inputNumArray) {
-  let toPrint = "";
-  for (let i = 0; i < inputNumArray[inputNumArrayIndex]; i++) {
-    toPrint = toPrint + emoji;
-  }
-  console.log(toPrint);
-  emojiArray.push(toPrint);
-  console.log(emojiArray[emojiArray.length - 1]);
-  inputNumArrayIndex++;
+var emojiArrayPrint = function() {
+  emojiArray = inputNumArray.map(element => {
+    let toPrint = "";
+    for (let i = 0; i < element; i++) {
+      toPrint = toPrint + emoji;
+    }
+    return toPrint;
+  });
 };
+
+var clearAllDOM = function() {
+  let parent = document.getElementById("output");
+  parent.innerHTML = "";
+};
+
+var clearDisplay = function() {};
 
 var inputHappened = function(currentInput) {
   if (isNaN(parseInt(currentInput)) === false) {
     inputNumArray.push(parseInt(currentInput));
     console.log(inputNumArray[inputNumArrayIndex]);
-    emojiArrayPrint(inputNumArray);
+    emojiArrayPrint();
     display();
     console.log(inputNumArrayIndex);
   }
-}
+};
