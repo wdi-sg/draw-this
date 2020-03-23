@@ -5,8 +5,19 @@
   </head>
   <body>
     <input class="starter" id="input" placeholder="input"/>
-    <h2>output:</h2>
-    <p class="starter" id="output"></p>
+    <h2>instructions:</h2>
+    <p class="starter" id="instructions">
+        num*: add as many rows of (num) columns as you want, leaving spaces between the nums eg 2 3 1
+        <br><br>
+        clear: clear the output
+        <br>
+        clear num: clear row (num)
+        <br><br>
+        triangle num: add a triangle of height (num)
+    </p>
+    <ul id="output">
+
+    </ul>
     <script>
       document.querySelector('#input').addEventListener('change', function(event){
         var currentInput = event.target.value;
