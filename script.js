@@ -1,48 +1,51 @@
 console.log("hello script js");
 var output = document.querySelector('#output');
 var input = document.querySelector('#input')
+var inputArray;
 
+//Main Function
 var inputHappened = function(currentInput){
-  var inputArray = currentInput.split(" ");
-  if (inputArray.length > 1){
-    clearMultipleRows(inputArray);
+  inputArray = currentInput.split(" ");
+  if (inputArray.includes('clear')){
+    clearPineapples();
   } else {
-    singleInput(currentInput);
+        for (let num of inputArray){
+            generatePineapples(num);
+        }
   }
   clearInput();
 };
 
-//Clearing Multiple Rows
-var clearMultipleRows = function(inputArray){
-    var rowNumber = parseInt(inputArray[1]) - 1;
-    var childToRemove = output.childNodes[rowNumber];
-    output.removeChild(childToRemove);
+
+var clearPineapples = function(){
+    //Clearing Specific Row
+    if (inputArray.length > 1){
+        var rowNumber = parseInt(inputArray[1]) - 1;
+        var childToRemove = output.childNodes[rowNumber];
+        output.removeChild(childToRemove);
+    }
+    //Clearing entire output
+    else {
+        clearOutput();
+    }
 }
 
-
-var singleInput = function(input){
-  if (input.includes('clear')){
-    clearOutput();
-  } else {
-    display( parseInt(input) );
-  }
+var generatePineapples = function(input){
+    var pineapple = document.createElement("p");
+    pineapple.innerHTML = "🍍".repeat(parseInt(input));
+    display( pineapple );
 }
 
 var clearInput = function(){
     input.value = "";
 }
 
-
 var clearOutput = function(){
     output.innerHTML = "";
 }
 
 //displaying pineapples
-var display = function(numberOfPineapples){
+var display = function(display){
   // your DOM manipulation code here
-  var pineapple = document.createElement("p");
-
-  pineapple.innerHTML = "🍍".repeat(numberOfPineapples);
-  output.appendChild(pineapple);
-
+  output.appendChild(display);
 };
