@@ -157,12 +157,74 @@ var drawRightTriangle=(base)=>{
 
 }
 
+var drawEquiTriangle=(base)=>{
+    var newRowItem=[];
+    var newRowID, textDisplayed;
+ for(var j=base-1;j>=0;j--)
+    {
+         var newParagraph=document.createElement('p');
+        numberOfCurrentRow++;
+           newRowID=numberOfCurrentRow;
+        var str="";
+        for(i=0;i<base;i++)
+        {
+            if(i-j>=0){
+                        str+=symbol;
+                    }
+            else{
+
+                        str+='&nbsp';
+
+                    }
+
+        }
+        console.log(str);
+            newParagraph.classList.add('row');
+    newParagraph.setAttribute("id",newRowID);
+    newParagraph.innerHTML=str;
+    output.appendChild(newParagraph);
+    }
+
+}
+
+var drawReverseEquiTriangle=(base)=>{
+    var newRowItem=[];
+    var newRowID, textDisplayed;
+ for(var j=0;j<base;j++)
+    {
+         var newParagraph=document.createElement('p');
+        numberOfCurrentRow++;
+           newRowID=numberOfCurrentRow;
+        var str="";
+        for(i=0;i<base;i++)
+        {
+            if(i<j){
+                        str+='&nbsp';
+                    }
+            else{
+
+                        str+=symbol;
+
+                    }
+
+        }
+        console.log(str);
+            newParagraph.classList.add('row');
+    newParagraph.setAttribute("id",newRowID);
+    newParagraph.innerHTML=str;
+    output.appendChild(newParagraph);
+    }
+
+}
+
+
+
 
 //Change Message
 var changeMessage=()=>
 {
     var instruction=document.getElementById("instructions");
-    instruction.innerText="Type a single digit to insert row.\n Type clear to clear all.\n Type clear with number to clear row.\n Type 2 similar numbers with a space to draw a square \n Type triangle and a number for a triangle"
+    instruction.innerText="Type a single digit to insert row.\n Type clear to clear all.\n Type clear with number to clear row.\n Type 2 similar numbers with a space to draw a square \n Type triangle and a number for a triangle\n Type rtriangle and a number for a reverse triangle\n Type eTriangle for a isosceles triangle"
 }
 
 //Where the magic happens
@@ -248,6 +310,33 @@ else if (questionCount===1)
             drawRightTriangle(rtriangleBase);
         }
     }
+
+    if(inputArray[0].toLowerCase()==="etriangle")
+    {
+        if(isNaN(parseInt(inputArray[1])))
+        {
+            //console.log("nonsense");
+        }
+        else
+        {
+            var etriangleBase=parseInt(inputArray[1]);
+            drawEquiTriangle(etriangleBase);
+        }
+    }
+
+    if(inputArray[0].toLowerCase()==="eutriangle")
+    {
+        if(isNaN(parseInt(inputArray[1])))
+        {
+            //console.log("nonsense");
+        }
+        else
+        {
+            var eutriangleBase=parseInt(inputArray[1]);
+            drawReverseEquiTriangle(eutriangleBase);
+        }
+    }
+
   }
 }
 //  display( "WOW SOMETHING HAPPENED" );
