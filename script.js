@@ -1,25 +1,48 @@
 console.log("hello script js");
+var output = document.querySelector('#output');
+var input = document.querySelector('#input')
 
 var inputHappened = function(currentInput){
-  if (currentInput.includes('clear')){
-    clearOutput();
+  var inputArray = currentInput.split(" ");
+  if (inputArray.length > 1){
+    clearMultipleRows(inputArray);
   } else {
-    display( parseInt(currentInput) );
+    singleInput(currentInput);
   }
+  clearInput();
 };
 
+//Clearing Multiple Rows
+var clearMultipleRows = function(inputArray){
+    var rowNumber = parseInt(inputArray[1]) - 1;
+    var childToRemove = output.childNodes[rowNumber];
+    output.removeChild(childToRemove);
+}
+
+
+var singleInput = function(input){
+  if (input.includes('clear')){
+    clearOutput();
+  } else {
+    display( parseInt(input) );
+  }
+}
+
+var clearInput = function(){
+    input.value = "";
+}
+
+
 var clearOutput = function(){
-    var output = document.querySelector('#output');
     output.innerHTML = "";
 }
 
 //displaying pineapples
 var display = function(numberOfPineapples){
   // your DOM manipulation code here
-  var output = document.querySelector('#output');
   var pineapple = document.createElement("p");
-  pineapple.innerHTML = "🍍".repeat(numberOfPineapples);
 
+  pineapple.innerHTML = "🍍".repeat(numberOfPineapples);
   output.appendChild(pineapple);
 
 };
