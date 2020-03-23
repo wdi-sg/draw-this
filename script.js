@@ -1,6 +1,27 @@
-var inputHappened = function(currentInput){
+var emoji = "";
+
+var instr = document.createElement("h2");
+instr.innerText = "Usage: \n" +
+  "<command> [arg(s)]\n\n" +
+  "command: draw, clear. If this is a number, command will default to draw.\n" +
+  "arg: number. if provided with draw, will draw this many.\n" +
+  "if provided with clear, will remove nth row from the top.";
+
+var inputBox = document.querySelector("#input");
+document.querySelector("body").insertBefore(instr,inputBox);
+
+document.querySelector("#output").innerText = "Enter an emoji! (or just a character)";
+
+var inputHappened = function (currentInput) {
   var inArr = currentInput.split(" ");
   var command, times, outStr;
+
+  clearInput();
+
+  if (emoji === "") {
+    emoji = currentInput;
+    document.querySelector("#output").innerText = "";
+  }
 
   if (inArr.length === 1) {
     if (currentInput === "clear") {
