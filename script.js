@@ -1,11 +1,20 @@
 console.log("hello script js");
 
+function clearInput() {
+  document.getElementById("input").value = "";
+}
+
 var inputHappened = function(currentInput){
-  console.log( currentInput );
-  display( "WOW SOMETHING HAPPENED" );
+  clearInput();
+  var newArray = [];
+  for (var i=0; i < currentInput; i++) {
+    newArray.push("🍍");
+  };
+  var newRow = document.createElement("p");
+  newRow.textContent = newArray.join("");
+  return display(newRow);
 };
 
 var display = function(stuffToDisplay){
-  // your DOM manipulation code here
-  
+  document.getElementById("output").appendChild(stuffToDisplay)
 };
