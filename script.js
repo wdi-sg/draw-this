@@ -44,8 +44,8 @@ InsertRow=(pineappleInsert)=>{
 var clear=()=>{
     var rowRemoval=document.getElementsByClassName("row");
     //var itemRemoval;
-
-
+for(var i=0;i<rowRemoval.length;i++){
+numberOfCurrentRow--;}
         output.textContent='';
         //output.removeChild(rowRemoval[0]);
 //output.removeChild(rowRemoval[0]);
@@ -56,9 +56,40 @@ var clearSpecific=()=>{
 //console.log(typeof rowtoShoot);
 var rowClear=document.getElementById(rowtoShoot);
 output.removeChild(rowClear)
+numberOfCurrentRow--;
 //var rowClear=
 }
 
+//var drawing squares
+var drawSquare=(sides)=>{
+    var newRowItem=[];
+    var newRowID, textDisplayed;
+
+    for(var j=0;j<sides;j++)
+    {
+         var newParagraph=document.createElement('p');
+        numberOfCurrentRow++;
+    //class name cannot contain space
+    newRowID=numberOfCurrentRow;
+        for(var i=0; i<sides;i++)
+    {
+        if(i===0)
+        {
+            newRowItem=["🍍"];
+
+        }
+        else
+        {
+            newRowItem.push("🍍")
+        }
+    }
+     textDisplayed=newRowItem.join('');
+    console.log(textDisplayed);
+    newParagraph.classList.add('row');
+    newParagraph.setAttribute("id",newRowID);
+    newParagraph.innerText=textDisplayed;
+    output.appendChild(newParagraph);}
+}
 
 
 //Where the magic happens
@@ -89,6 +120,20 @@ var inputHappened = function(currentInput){
     {
         rowtoShoot=inputArray[1];
         clearSpecific();
+    }
+    else
+    if(inputArray[0]===inputArray[1])
+    {
+        console.log("Same number");
+        if(isNaN(parseInt(inputArray[0])))
+        {
+            console.log("nonsense");
+        }
+        else
+        {
+            var squareNumber=parseInt(inputArray[0]);
+            drawSquare(squareNumber);
+        }
     }
   }
 //  display( "WOW SOMETHING HAPPENED" );
