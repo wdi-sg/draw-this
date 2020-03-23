@@ -4,7 +4,7 @@ chooseEmoji();
 var emojiSelected = false;
 var selectedEmoji = "";
 
-// Part 4 - triangle function
+// Part 5 - reverse triangle function
 
 // Function on input + enter
 var inputHappened = function(currentInput) {
@@ -30,6 +30,8 @@ var inputHappened = function(currentInput) {
             display(args[1]);
         } else if (args[0] == "triangle" && !isNaN(args[1])) {
             triangle(args[1]);
+        } else if (args[0] == "rtriangle" && !isNaN(args[1])) {
+            rtriangle(args[1]);
         } else {
             //do nothing
         }
@@ -44,6 +46,16 @@ var display = function(stuffToDisplay) {
         content += selectedEmoji;
     }
     addPara(content);
+
+};
+
+var customDisplay = function(length, character) {
+    var content = "";
+    var repeat = parseInt(length);
+    for (i = 0; i < length; i++) {
+        content += character;
+    }
+    return content;
 
 };
 
@@ -139,8 +151,22 @@ function selectEmoji(input) {
 
 }
 
-function triangle(height){
-    for(i=1;i<=height;i++){
+function triangle(height) {
+    for (i = 1; i <= height; i++) {
         display(i);
+    }
+}
+
+function rtriangle(height) {
+    var height2 = parseInt(height);
+    var rowContent = "";
+    var i = 1;
+    while (i<=height2) {
+        rowContent += customDisplay((height2 - i), "&nbsp&nbsp&nbsp");
+        rowContent += customDisplay(i, selectedEmoji);
+        console.log(rowContent);
+        addPara(rowContent);
+        rowContent = "";
+        i++;
     }
 }
