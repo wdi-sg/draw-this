@@ -1,8 +1,10 @@
 console.log("hello script js");
 var pineapple = "" ;
+var space = "";
+var temp = "";
 var total=0;
 var split = [];
-
+document.getElementById("input").placeholder = "what u want to draw?";
 var inputHappened = function(currentInput){
   console.log( currentInput );
   data = currentInput;
@@ -25,7 +27,7 @@ var display = function(stuffToDisplay){
     var pcreate = document.createElement("p");
     console.log("pineapple")
     for (var i=0; i<data; i++) {
-        pineapple += "🍍";
+        pineapple = "🍍";
     }
     total++;
     pcreate.innerText = pineapple;
@@ -72,4 +74,46 @@ var display = function(stuffToDisplay){
     split = [];
   }
 
+  //triangle drawing
+  if (split[0] == "triangle") {
+    console.log("triange")    //draw 3 rows
+    for (var i=0; i<split[1]; i++) {
+        var pcreate = document.createElement("p");
+        for (var j=0; j<(i+1); j++) {
+            pineapple = pineapple + "🍍";
+        }
+        pcreate.innerText = pineapple;
+        pineapple = "";
+        var input = document.getElementById("output");
+        input.appendChild(pcreate);
+    }
+    total = total + parseInt(split[0]);
+    split = [];
+  }
+
+  //reversetriangle drawing
+  if (split[0] == "rtriangle") {
+    console.log("rtriange")
+    for (var i=0; i<split[1]; i++) {
+        var pcreate = document.createElement("p");
+        //when i=0 , j run 1 times, k run 2 times, jlimit = 1, klimit = 2
+        //when i=1 , j run 2 times, k run 1 times, jlimit = 2, klimit = 1
+        //when i=2 , j run 3 times, k run 0 times, jlimit = 3, klimit = 0
+        for (var j=0; j<(i+1); j++) {
+            temp = temp + "🍍";
+        }
+        for (var k=0; k<(split[1]-(i+1)); k++) {
+            space += "&nbsp;";
+        }
+        pineapple = space + temp;
+        pcreate.innerText = pineapple;
+        temp = "";
+        pineapple = "";
+        space = "";
+        var input = document.getElementById("output");
+        input.appendChild(pcreate);
+    }
+    total = total + parseInt(split[0]);
+    split = [];
+  }
 };
