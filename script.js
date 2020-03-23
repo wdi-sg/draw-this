@@ -10,8 +10,11 @@ var inputHappened = function(currentInput){
     display();
     pineappleHolder = [];
     if (currentInput.toUpperCase() === "CLEAR"){
-    var retrieveOutput = document.querySelector('#output');
-    retrieveOutput.innerHTML = "";
+        var retrieveOutput = document.querySelector('#output');
+        retrieveOutput.innerHTML = "";
+    } else if (currentInput.toUpperCase() === "CLEAR 2"){
+        var getterHold = document.getElementById("output");
+        getterHold.removeChild(getterHold.childNodes[1]);
     }
     document.getElementById('input').value = "";
 };
