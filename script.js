@@ -9,7 +9,6 @@ var inputHappened = function(currentInput){
 let inputNumArray = [];
 let clearArray = [];
 let emoji = "🍍";
-let inputNumArrayIndex = 0;
 let emojiArray = [];
 
 var display = function() {
@@ -38,14 +37,23 @@ var clearAllDOM = function() {
   parent.innerHTML = "";
 };
 
-var clearDisplay = function() {};
-
 var inputHappened = function(currentInput) {
+  let currentInputSplit = currentInput.split(" ");
   if (isNaN(parseInt(currentInput)) === false) {
     inputNumArray.push(parseInt(currentInput));
-    console.log(inputNumArray[inputNumArrayIndex]);
+    console.log(inputNumArray[inputNumArray.length - 1]);
     emojiArrayPrint();
     display();
-    console.log(inputNumArrayIndex);
+    console.log(inputNumArray.length - 1);
+  }
+  else if (currentInputSplit.length === 2 && currentInputSplit[0] === "clear") {
+    inputNumArray[currentInputSplit[1]-1] = 0;
+    emojiArrayPrint();
+    display();
+  }
+  else if (currentInput === "clear") {
+    inputNumArray = inputNumArray.map((element) => 0);
+    emojiArrayPrint();
+    display();
   }
 };
