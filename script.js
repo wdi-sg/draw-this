@@ -28,14 +28,29 @@ function addRow(length) {
 var inputHappened = function(currentInput) {
     rowCount++;
     clearInput();
+
+    //If input is just "clear"
     if (currentInput === `clear`) {
         return output.textContent = ``;
+
+    //If input is not "clear" but longer than one character
     } else if (currentInput.length > 1) {
       var instructions = currentInput.split(" ");
-      var rowToClear = instructions[1];
-      clearRow(rowToClear);
+
+      //If the first word is clear, assume second word is number and clear that row.
+      if (instructions[0]===`clear`) {
+        var rowToClear = parseInt(instructions[1]);
+        clearRow(rowToClear);
+
+      //If the first word is not clear, assume it's all numbers.
+      } else {
+        for (var i=0; i < instructions.length; i++) {
+          display(addRow(parseInt(instructions[i])));
+        }
+      }
+    //If input is just one character, assume it's a number and add row.
     } else {
-          var newRow = addRow(currentInput);
+          var newRow = addRow(parseInt(currentInput));
           return display(newRow);
     }
 }
