@@ -1,12 +1,22 @@
 console.log("hello script js");
-
+var step = "0";
+var character;
 var inputHappened = function(currentInput){
-  console.log( currentInput );
-  display(currentInput);
+  switch(step){
+    case "0":
+      character = currentInput;
+      step = "1";
+      document.getElementById("input").value = "";
+      output.innerHTML = "Enter amount you want to enter."
+    break;
 
+    case "1":
+    display(currentInput, character);
+    break;
+  }
 };
 
-var display = function(stuffToDisplay){
+var display = function(stuffToDisplay, emoji){
   // your DOM manipulation code here
   var pineappleRow = document.createElement("p");
   var pineappleAmount = "";
@@ -29,11 +39,10 @@ var display = function(stuffToDisplay){
 
   var value = parseInt(wordArray[0]);
   for (var i = 0; i < value; i++){
-    pineappleAmount = pineappleAmount + "🍍";
+    pineappleAmount = pineappleAmount + emoji;
   }
   pineappleRow.innerHTML = pineappleAmount;
   output.innerHTML = pineappleAmount;
-  debugger;
   if(!isNaN(wordArray[1])){
     document.body.appendChild(pineappleRow);
     for(var i = 0; i < wordArray[1] - 1; i++){
