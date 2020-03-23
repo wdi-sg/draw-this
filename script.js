@@ -12,32 +12,43 @@ var inputHappened = function(currentInput){
 //Display function
 var display = function(currentInput) {
 
-    if (progress == 'start') {
+    if (progress === 'start') {
         progress = 'number of emoji';
         emoji = currentInput;
         return document.querySelector('#output').innerText = `How many emoji do you want to display?`;
     }
 
-    if (progress == 'number of emoji') {
-        var pArray = [];
-        var inputArray = currentInput.split(' ');
+    if (progress === 'number of emoji') {
+        var inputArray = currentInput.split(' '); //Split currentInput into an array
 
-        if (!isNaN(parseInt(inputArray[0])) == true) {
-            for (var i = 0; i < inputArray[0]; i++) {
-                pArray.push(emoji);
+        //Create a div element with class 'emojiContainer' (to access childNode later)
+        var emojiContainer = document.createElement('div');
+        emojiContainer.className = 'emojiContainer';
+
+    //e.g. inputArray = ['2','2']
+    if (!isNaN(parseInt(inputArray[0])) === true) {
+
+        //Equivalent to for(const input = 0; input < inputArray.length; input++)
+        for (const input of inputArray) {
+            inputNum = parseInt(input);
+            var myP = document.createElement('p');
+
+            for (var i = 0; i < inputNum; i++) {
+                myP.innerText += emoji;
             }
-        } else {
-            inputArrayIndex = inputArray[1];
-            var pClear = document.querySelectorAll('.emoji');
-                pClear[inputArrayIndex - 1].innerHTML = "";
+
+            emojiContainer.appendChild(myP); //Append p tags to div class emojiCounter
+            document.body.appendChild(emojiContainer); //Append div class to body
+
         }
+    } else {
+            //e.g. inputArray = ['clear','2'], to clear second row
+            numToRemove = parseInt(inputArray[1]);
+            var emojiContainer = document.querySelector('.emojiContainer');
+            var selectedChildNode = emojiContainer.childNodes[numToRemove - 1];
+            emojiContainer.removeChild(selectedChildNode); //Removes p according to childNodes
 
-        var myPText = pArray.join('');
-        var myP = document.createElement('p');
-        myP.classList.add('emoji');
-        myP.innerText = myPText;
-
-        return document.body.appendChild(myP);
+        };
     }
 };
 
