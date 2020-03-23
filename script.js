@@ -1,33 +1,47 @@
-console.log("hello script js");
+document.querySelector('#output').innerText = `Please type an emoji. Or choose one below: 🤯 😈 🤗 🤬 😷`;
 
-var clearInput = function() {
-    return document.getElementById("input").value = '';
-}
+var progress = 'start';
+var emoji = '🥇';
 
+//Input function
 var inputHappened = function(currentInput){
     clearInput();
     display(currentInput);
 };
 
+//Display function
 var display = function(currentInput) {
 
-    var pArray = [];
-
-    if (!isNaN(parseInt(currentInput)) == true) {
-        for (var i = 0; i < currentInput; i++) {
-        pArray.push('🍍');
-        }
-    } else {
-        var inputArray = currentInput.split(' ');
-        var inputArrayIndex = inputArray[1];
-        var pClear = document.querySelectorAll('.pineapple');
-            pClear[inputArrayIndex - 1].innerHTML = "";
+    if (progress == 'start') {
+        progress = 'number of emoji';
+        emoji = currentInput;
+        return document.querySelector('#output').innerText = `How many emoji do you want to display?`;
     }
 
-    var myPText = pArray.join('');
-    var myP = document.createElement('p');
-    myP.classList.add('pineapple');
-    myP.innerText = myPText;
+    if (progress == 'number of emoji') {
+        var pArray = [];
+        var inputArray = currentInput.split(' ');
 
-    return document.body.appendChild(myP);
+        if (!isNaN(parseInt(inputArray[0])) == true) {
+            for (var i = 0; i < inputArray[0]; i++) {
+                pArray.push(emoji);
+            }
+        } else {
+            inputArrayIndex = inputArray[1];
+            var pClear = document.querySelectorAll('.emoji');
+                pClear[inputArrayIndex - 1].innerHTML = "";
+        }
+
+        var myPText = pArray.join('');
+        var myP = document.createElement('p');
+        myP.classList.add('emoji');
+        myP.innerText = myPText;
+
+        return document.body.appendChild(myP);
+    }
 };
+
+//Clear input function
+var clearInput = function() {
+    return document.getElementById("input").value = '';
+}
