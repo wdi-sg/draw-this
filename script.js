@@ -21,8 +21,8 @@ var makePineappleArray = function() {
 var guider = "start";
 
 var emoji;
-var emojiThree = "<p>" + emoji + emoji + emoji + "</p>";
-var emojiTwo = "<p>" + emoji + emoji + "</p>";
+var emojiThree;
+var emojiTwo;
 
 var userEmoji = function(userInput) {
     emoji = userInput;
@@ -38,13 +38,9 @@ var inputHappened = function(currentInput){
   resetInput();
   input.placeholder = "how many emoji?";
 
-  if (currentInput !== "" && guider === "start"){
+  if (guider === "start"){
     userEmoji(currentInput);
     guider = "";
-  } else if (guider === "start") {
-    emoji = "🍍"
-    emojiTwo = "<p>" + emoji + emoji + "</p>";
-    emojiTwo = "<p>" + emoji + emoji + "</p>";
   };
 
   if (currentInput === "3" && guider === ""){
@@ -57,6 +53,10 @@ var inputHappened = function(currentInput){
     display(emojiTwo);
   };
 
+  if (currentInput === "1" && guider === ""){
+    display(emoji);
+  };
+
   if (currentInput.toLowerCase() === 'clear'){
     resetOutput();
   };
@@ -65,9 +65,20 @@ var inputHappened = function(currentInput){
     makePineappleArray();
   };
 
-  if (currentInput === "2 2"){
-    display("<p>🍍🍍</p>") + display("<p>🍍🍍</p>");
+  if (currentInput === "2 2" && guider === ""){
+    display(emojiTwo) + display(emojiTwo);
   };
+
+   if (currentInput === "triangle 3"){
+    display(emoji) + display(emojiTwo) + display(emojiThree);
+  };
+
+  if (currentInput === "rtriangle 3"){
+    rEmoji = "<p>" + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + emoji + "</p>";
+    rEmojiTwo = "<p>" + "&nbsp;&nbsp;&nbsp;&nbsp;" + emoji + emoji + "</p>";
+
+    display(rEmoji) + display(rEmojiTwo) + display(emojiThree);
+  }
 };
 
 var display = function(stuffToDisplay){
