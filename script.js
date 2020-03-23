@@ -26,7 +26,13 @@ function addRow(length) {
     var newRow = document.createElement(`p`);
     newRow.textContent = arrayContent.join(``);
     newRow.setAttribute("class", "row");
-    return newRow;
+    return display(newRow);
+}
+
+function createTriangle(height) {
+  for (var rowLength=1; rowLength<=height; rowLength++) {
+    addRow(rowLength);
+  }
 }
 
 var inputHappened = function(currentInput) {
@@ -53,17 +59,22 @@ var inputHappened = function(currentInput) {
                 var rowToClear = parseInt(instructions[1]);
                 clearRow(rowToClear);
 
-                //If the first word is not clear, assume it's all numbers.
+            } else if (instructions[0]===`triangle`) {
+              var triangleHeight = parseInt(instructions[1]);
+              createTriangle(triangleHeight);
+
+            // } else if {
+
+            //If the first word is not clear/triangle/rtriangle, assume it's all numbers.
             } else {
                 for (var i = 0; i < instructions.length; i++) {
-                    display(addRow(parseInt(instructions[i])));
+                    addRow(parseInt(instructions[i]));
                 }
             }
             //If input is just one character, assume it's a number and add row.
         } else {
             var newRow = addRow(parseInt(currentInput));
-            return display(newRow);
-        }
+          }
     }
 }
 
