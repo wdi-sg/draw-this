@@ -41,16 +41,21 @@ const runFunc = function(func, times, input){
 var inputHappened = function(currentInput){
 
 	if (currentInput === 'clear'){
-	node.innerHTML = "";
+		node.innerHTML = "";
+		entries = 0;
+		console.log(entries)
+	} else if (currentInput === 'clear 2'){
+		node.removeChild(node.lastChild);
+		entries = 1;
 	} else if (entries % 2 === 0){
-  	runFunc(addColumn, currentInput, pine);
-  	entries++;
+  		runFunc(addColumn, currentInput, pine);
+  		entries++;
   	} else if (entries % 2 !== 0){
-  	addRow(pine);
-  	runFunc(addColumn, currentInput-1, pine);
-  	entries++;
+  		addRow(pine);
+  		runFunc(addColumn, currentInput-1, pine);
+  		entries++;
   	};
-  	clearInput();
+  		clearInput();
 
   // display( "WOW SOMETHING HAPPENED" );
 };
