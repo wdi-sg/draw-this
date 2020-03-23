@@ -259,7 +259,13 @@ var drawReverseEquiTriangle=(base)=>{
 var changeMessage=()=>
 {
     var instruction=document.getElementById("instructions");
-    instruction.innerText="Type a single digit to insert row.\n Type clear to clear all.\n Type clear with number to clear row.\n Type 2 similar numbers with a space to draw a square \n Type triangle and a number for a triangle\n Type rtriangle and a number for a reverse triangle\n Type eTriangle for a isosceles triangle\n Type euTriangle for reverse isosceles triangle."
+    instruction.innerText="Type a single digit to insert row.\n Type clear to clear all.\n Type clear with number to clear row.\n Type 2 similar numbers with a space to draw a square \n Type triangle and a number for a triangle\n Type rtriangle and a number for a reverse triangle\n Type eTriangle for a isosceles triangle\n Type euTriangle for reverse isosceles triangle.\n Type Cursor for cursor mode";
+}
+
+var cursorMessage=()=>
+{
+        var instruction=document.getElementById("instructions");
+    instruction.innerText="Type movedown and number to move cursor\n Type drawdown and number to draw the symbols. Please keep within the 4 by 4 boxes";
 }
 
 //Where the magic happens
@@ -286,6 +292,11 @@ else if (questionCount===1)
         if(inputArray[0].toLowerCase()==="clear")
         {
             clear();
+        }
+        else if(inputArray[0].toLowerCase()==="cursor")
+        {
+            cursorMode=true;
+            cursorMessage();
         }
     }
     else
@@ -377,9 +388,156 @@ else if (questionCount===1)
 }
 //  display( "WOW SOMETHING HAPPENED" );
   inputArray=[];}
-  else{
 
-  }
+  if(cursorMode)
+    {
+    clear();
+    cursorDisplay();
+    var drawingCount=0;
+    //console.log("cursor Mode");
+    inputArray=currentInput.split(' ');
+    if(isNaN(parseInt(inputArray[1])))
+        {
+            console.log("nothing happens")
+        }
+    else
+        {
+            var index=parseInt(inputArray[1])
+            console.log("we are in");
+            if(inputArray[0].toLowerCase()==="movedown")
+            {
+                if(cursorPosition.yCoordinate+index>3)
+                {
+                    alert("You have exceeded the box")
+                }
+                else
+                {
+                    emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]='&nbsp'+'&nbsp';
+                    cursorPosition.yCoordinate+=index;
+                    emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]='c';
+                    cursorDisplay();
+                }
+            }
+            else
+            if(inputArray[0].toLowerCase()==="moveup")
+            {
+                if(cursorPosition.yCoordinate-index<0)
+                {
+                    alert("You have exceeded the box")
+                }
+                else
+                {
+                    emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]='&nbsp'+'&nbsp';
+                    cursorPosition.yCoordinate-=index;
+                    emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]='c';
+                    cursorDisplay();
+                }
+            }
+            else
+            if(inputArray[0].toLowerCase()==="moveright")
+            {
+                if(cursorPosition.xCoordinate+index>3)
+                {
+                    alert("You have exceeded the box")
+                }
+                else
+                {
+                    emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]='&nbsp'+'&nbsp';
+                    cursorPosition.xCoordinate+=index;
+                    emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]='c';
+                    cursorDisplay();
+                }
+            }
+            else
+            if(inputArray[0].toLowerCase()==="moveleft")
+            {
+                if(cursorPosition.xCoordinate-index<0)
+                {
+                    alert("You have exceeded the box")
+                }
+                else
+                {
+                    emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]='&nbsp'+'&nbsp';
+                    cursorPosition.xCoordinate-=index;
+                    emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]='c';
+                    cursorDisplay();
+                }
+            }
+
+            if(inputArray[0].toLowerCase()==="drawdown")
+            {
+                if(cursorPosition.yCoordinate+index>3)
+                {
+                    alert("You have exceeded the box")
+                }
+                else
+                {
+                    for(drawingCount=cursorPosition.yCoordinate;drawingCount<=index;drawingCount++)
+                    {
+                        emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]=symbol;
+                        cursorPosition.yCoordinate+=1;
+
+                                        cursorDisplay();
+                    }
+                }
+            }
+            else
+            if(inputArray[0].toLowerCase()==="drawup")
+            {
+                if(cursorPosition.yCoordinate-index<0)
+                {
+                    alert("You have exceeded the box")
+                }
+                else
+                {
+                    for(drawingCount=cursorPosition.yCoordinate;drawingCount<=index;drawingCount++)
+                    {
+                        emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]=symbol;
+                        cursorPosition.yCoordinate-=1;
+
+                                        cursorDisplay();
+                    }
+                }
+            }
+
+            if(inputArray[0].toLowerCase()==="drawright")
+            {
+                if(cursorPosition.xCoordinate+index>3)
+                {
+                    alert("You have exceeded the box")
+                }
+                else
+                {
+                    for(drawingCount=cursorPosition.xCoordinate;drawingCount<=index;drawingCount++)
+                    {
+                        emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]=symbol;
+                        cursorPosition.xCoordinate+=1;
+
+                                        cursorDisplay();
+                    }
+                }
+            }
+            else
+            if(inputArray[0].toLowerCase()==="drawleft")
+            {
+                if(cursorPosition.xCoordinate-index<0)
+                {
+                    alert("You have exceeded the box")
+                }
+                else
+                {
+                    for(drawingCount=cursorPosition.xCoordinate;drawingCount<=index;drawingCount++)
+                    {
+                        emptyArray[cursorPosition.yCoordinate][cursorPosition.xCoordinate]=symbol;
+                        cursorPosition.xCoordinate-=1;
+
+                                        cursorDisplay();
+                    }
+                }
+            }
+
+        }
+    }
 };
 
 var display = function(stuffToDisplay){
