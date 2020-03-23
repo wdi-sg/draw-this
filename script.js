@@ -3,6 +3,8 @@ console.log("hello script js");
 
 row_entries = 0
 
+document.querySelectorAll("#input")[0].placeholder = `Please enter a character`;
+
 let emoji = '🍍';
 
 const node = document.querySelectorAll('p.starter')[0];
@@ -48,7 +50,7 @@ const createGrid = function(num_of_columns, num_of_rows){
 	};
 };
 
-//draws right-angle triangle with height = length
+//draws right angle triangle with height as input
 const triangle = function(height){
 	let i = 1;
 	while (i <= height){
@@ -57,9 +59,13 @@ const triangle = function(height){
 	};
 };
 
-var inputHappened = function(currentInput){
 
-	if (parseInt(currentInput) && currentInput.length > 1){
+var inputHappened = function(currentInput){
+	if (!parseInt(currentInput) && currentInput.length === 1){
+		emoji = currentInput;
+		document.querySelectorAll("#input")[0].placeholder = `Input`;
+
+	} else if (parseInt(currentInput) && currentInput.length === 3){
 		list = currentInput.split(" ");	
 		createGrid(parseInt(list[0]), parseInt(list[1]));
 		row_entries = parseInt(list[1]);
@@ -77,7 +83,8 @@ var inputHappened = function(currentInput){
   		addRow(emoji);
   		runFunc(addColumn, currentInput-1, emoji);
   		row_entries++;
-  	};
+  	} else if ('triangle' in currentInput.split(" "));
+  		triangle(parseInt(currentInput.split(" ")[1]));
   		clearInput();
 
   // display( "WOW SOMETHING HAPPENED" );
