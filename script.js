@@ -21,6 +21,7 @@ var inputHappened = function (currentInput) {
   if (emoji === "") {
     emoji = currentInput;
     document.querySelector("#output").innerText = "";
+    return;
   }
 
   if (inArr.length === 1) {
@@ -70,16 +71,17 @@ var clearDisplay = function () {
 };
 
 var clearRow = function (row) {
-  var rows = document.querySelectorAll("#output p");
+  var rows = document.querySelectorAll("#output code");
   console.log(rows);
   rows[row - 1].remove();
 };
 
 // string builder helper functions
 var createRow = function (innerStr) {
-  var p = document.createElement("p");
-  p.innerText = innerStr;
-  return p;
+  var el = document.createElement("code");
+  el.innerText = innerStr;
+  el.style.display = "block";
+  return el;
 }
 
 var emojiString = function (emoji, times) {
