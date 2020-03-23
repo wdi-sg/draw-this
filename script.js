@@ -8,6 +8,7 @@ var status = "beginning";
 var square;
 var cursorRow = 0;
 var cursorColumn = 0;
+var size;
 
 //Initial Flow
 var inputHappened = function(currentInput){
@@ -39,7 +40,7 @@ var mainFunction = function(){
     } else if (inputArray.includes('rtriangle')){
         generateRTriangle(inputArray[1]);
     } else if (inputArray.includes('square')){
-        generateSquare();
+        generateSquare(inputArray[1]);
     } else if (inputArray.includes('cursor')){
         cursorShow();
     } else if (inputArray.includes('move')){
@@ -67,7 +68,7 @@ var moveAndDraw = function(direction, distance){
         }
 
     } else if (direction === "down"){
-        if ((cursorRow + (distance - 1)) > 3){
+        if ((cursorRow + (distance - 1)) > (size - 1)){
             displaySquare();
             display(outOfBounds);
             return
@@ -79,7 +80,7 @@ var moveAndDraw = function(direction, distance){
         }
 
     } else if (direction === "right"){
-        if ((cursorColumn + (distance - 1)) > 3){
+        if ((cursorColumn + (distance - 1)) > (size - 1)){
             displaySquare();
             display(outOfBounds);
             return
@@ -116,19 +117,20 @@ var cursorShow = function(){
 
 var displaySquare = function(){
     clearOutput();
-    for (let i = 0; i < 4; i++){
+    for (let i = 0; i < size; i++){
         var displayLine = document.createElement("div");
         displayLine.innerHTML = square[i].join(" ");
         display(displayLine);
     }
 }
 
-var generateSquare = function(){
+var generateSquare = function(inputSize = 4){
+    size = inputSize;
     var space = "🟦";
     square = [];
-    for (let i = 0; i < 4; i++){
+    for (let i = 0; i < size; i++){
         var subArr = [];
-        for (let j = 0; j < 4; j++){
+        for (let j = 0; j < size; j++){
             subArr.push(space);
         }
         square.push(subArr);
