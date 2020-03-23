@@ -7,6 +7,19 @@ var rowToShoot;
     var output=document.getElementById("output");
 var symbol="🍍";
 var questionCount=0;
+var cursorMode=false;
+var cursorPosition={
+    xCoordinate:1,
+    yCoordinate:0
+};
+var emptyArray= [['&nbsp'+'&nbsp','c','&nbsp'+'&nbsp','&nbsp'+'&nbsp'],
+['&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp'],
+['&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp'],
+['&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp']];
+var emptyResetArray= [['&nbsp'+'&nbsp','c','&nbsp'+'&nbsp','&nbsp'+'&nbsp'],
+['&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp'],
+['&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp'],
+['&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp','&nbsp'+'&nbsp']];
 //console.log("hello script js");
  //🍍 onglai
 // for checking input
@@ -40,6 +53,28 @@ InsertRow=(pineappleInsert)=>{
     output.appendChild(newParagraph);
 
 }
+//cursor mode
+cursorDisplay=()=>{
+clear();
+    //var newRowItem=[];
+    var newRowID, textDisplayed;
+    var str="";
+    for(var verticalCount=0; verticalCount<4; verticalCount++)
+    {
+    var newParagraph=document.createElement('p');
+
+        for(var horizontalCount=0; horizontalCount<4; horizontalCount++)
+        {
+            str+=emptyArray[verticalCount][horizontalCount];
+        }
+    newParagraph.innerHTML=str;
+    output.appendChild(newParagraph);
+    str="";
+
+    }
+}
+
+
 
 //clear all
 var clear=()=>{
@@ -224,12 +259,13 @@ var drawReverseEquiTriangle=(base)=>{
 var changeMessage=()=>
 {
     var instruction=document.getElementById("instructions");
-    instruction.innerText="Type a single digit to insert row.\n Type clear to clear all.\n Type clear with number to clear row.\n Type 2 similar numbers with a space to draw a square \n Type triangle and a number for a triangle\n Type rtriangle and a number for a reverse triangle\n Type eTriangle for a isosceles triangle"
+    instruction.innerText="Type a single digit to insert row.\n Type clear to clear all.\n Type clear with number to clear row.\n Type 2 similar numbers with a space to draw a square \n Type triangle and a number for a triangle\n Type rtriangle and a number for a reverse triangle\n Type eTriangle for a isosceles triangle\n Type euTriangle for reverse isosceles triangle."
 }
 
 //Where the magic happens
 var inputHappened = function(currentInput){
-if(questionCount===0)
+if(!cursorMode)
+{if(questionCount===0)
 {
     //change message
     if(currentInput!=="default")
@@ -340,7 +376,10 @@ else if (questionCount===1)
   }
 }
 //  display( "WOW SOMETHING HAPPENED" );
-  inputArray=[];
+  inputArray=[];}
+  else{
+
+  }
 };
 
 var display = function(stuffToDisplay){
