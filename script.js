@@ -11,6 +11,7 @@ let clearArray = [];
 let emoji = "🍍";
 let emojiArray = [];
 
+//DOM manipulation for display 
 var display = function() {
   // your DOM manipulation code here
   clearAllDOM();
@@ -22,6 +23,7 @@ var display = function() {
   }
 };
 
+//creates emoji array for printing 
 var emojiArrayPrint = function() {
   emojiArray = inputNumArray.map(element => {
     let toPrint = "";
@@ -32,11 +34,13 @@ var emojiArrayPrint = function() {
   });
 };
 
+//clear all DOM
 var clearAllDOM = function() {
   let parent = document.getElementById("output");
   parent.innerHTML = "";
 };
 
+//main input function
 var inputHappened = function(currentInput) {
   let currentInputSplit = currentInput.split(" ");
   if (currentInputSplit.length === 1 && isNaN(parseInt(currentInput)) === false) {
@@ -58,6 +62,17 @@ var inputHappened = function(currentInput) {
   }
   else if (currentInputSplit.length >= 2 && isNaN(currentInputSplit[0]) === false) {
     currentInputSplit.map((element) => {
+      inputNumArray.push(element);
+    });
+    emojiArrayPrint();
+    display();
+  }
+  else if (currentInputSplit.length === 2 && currentInputSplit[0] === "triangle") {
+    let triangle = [];
+    for (let i=0; i<currentInputSplit[1]; i++) {
+      triangle.push(i+1);
+    }
+    triangle.map((element) => {
       inputNumArray.push(element);
     });
     emojiArrayPrint();
