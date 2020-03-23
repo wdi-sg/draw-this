@@ -61,7 +61,7 @@ numberOfCurrentRow--;
 //var rowClear=
 }
 
-//var drawing squares
+//drawing shapes
 var drawSquare=(sides)=>{
     var newRowItem=[];
     var newRowID, textDisplayed;
@@ -91,11 +91,78 @@ var drawSquare=(sides)=>{
     newParagraph.innerText=textDisplayed;
     output.appendChild(newParagraph);}
 }
+//triangles
+
+var drawtriangle=(base)=>{
+    console.log("I am here");
+    var newRowItem=[];
+    var newRowID, textDisplayed;
+
+    for(var j=0;j<base;j++)
+    {
+         var newParagraph=document.createElement('p');
+        numberOfCurrentRow++;
+    //class name cannot contain space
+    newRowID=numberOfCurrentRow;
+        for(var i=0; i<base;i++)
+    {
+        if(i===0)
+        {
+            newRowItem.push(symbol);
+
+        }
+        else
+        {
+            newRowItem.push(" ")
+        }
+    }
+     textDisplayed=newRowItem.join('');
+    console.log(textDisplayed);
+    newParagraph.classList.add('row');
+    newParagraph.setAttribute("id",newRowID);
+    newParagraph.innerText=textDisplayed;
+    output.appendChild(newParagraph);}
+}
+
+
+var drawRightTriangle=(base)=>{
+    var newRowItem=[];
+    var newRowID, textDisplayed;
+ for(var j=base-1;j>=0;j--)
+    {
+         var newParagraph=document.createElement('p');
+        numberOfCurrentRow++;
+           newRowID=numberOfCurrentRow;
+        var str="";
+        for(i=0;i<base;i++)
+        {
+            if(i-j>=0){
+                        str+=symbol;
+                    }
+            else{
+
+                        str+='&nbsp';
+                        str+='&nbsp';
+                        str+='&nbsp';
+                        str+='&nbsp';
+                    }
+
+        }
+        console.log(str);
+            newParagraph.classList.add('row');
+    newParagraph.setAttribute("id",newRowID);
+    newParagraph.innerHTML=str;
+    output.appendChild(newParagraph);
+    }
+
+}
+
+
 //Change Message
 var changeMessage=()=>
 {
     var instruction=document.getElementById("instructions");
-    instruction.innerText="Type a single digit to insert row.\n Type clear to clear all.\n Type clear with number to clear row.\n Type 2 similar numbers with a space to draw a square"
+    instruction.innerText="Type a single digit to insert row.\n Type clear to clear all.\n Type clear with number to clear row.\n Type 2 similar numbers with a space to draw a square \n Type triangle and a number for a triangle"
 }
 
 //Where the magic happens
@@ -132,6 +199,7 @@ else if (questionCount===1)
 
   if(inputArray.length===2)
   {
+    //console.log("hee");
     //console.log("wrong entry");
     if(inputArray[0].toLowerCase()==="clear")
     {
@@ -141,10 +209,10 @@ else if (questionCount===1)
     else
     if(inputArray[0]===inputArray[1])
     {
-        console.log("Same number");
+        //console.log("Same number");
         if(isNaN(parseInt(inputArray[0])))
         {
-            console.log("nonsense");
+            //console.log("nonsense");
         }
         else
         {
@@ -152,7 +220,36 @@ else if (questionCount===1)
             drawSquare(squareNumber);
         }
     }
-  }}
+    else
+     //console.log(typeof inputArray[0]);
+    if(inputArray[0].toLowerCase()==="triangle")
+    {
+        if(isNaN(parseInt(inputArray[1])))
+        {
+            //console.log("nonsense");
+        }
+        else
+        {
+            var triangleBase=parseInt(inputArray[1]);
+            drawtriangle(triangleBase);
+        }
+    }
+    else
+     //console.log(typeof inputArray[0]);
+    if(inputArray[0].toLowerCase()==="rtriangle")
+    {
+        if(isNaN(parseInt(inputArray[1])))
+        {
+            //console.log("nonsense");
+        }
+        else
+        {
+            var rtriangleBase=parseInt(inputArray[1]);
+            drawRightTriangle(rtriangleBase);
+        }
+    }
+  }
+}
 //  display( "WOW SOMETHING HAPPENED" );
   inputArray=[];
 };
