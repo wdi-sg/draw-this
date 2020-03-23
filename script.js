@@ -39,7 +39,7 @@ var clearAllDOM = function() {
 
 var inputHappened = function(currentInput) {
   let currentInputSplit = currentInput.split(" ");
-  if (isNaN(parseInt(currentInput)) === false) {
+  if (currentInputSplit.length === 1 && isNaN(parseInt(currentInput)) === false) {
     inputNumArray.push(parseInt(currentInput));
     console.log(inputNumArray[inputNumArray.length - 1]);
     emojiArrayPrint();
@@ -52,7 +52,14 @@ var inputHappened = function(currentInput) {
     display();
   }
   else if (currentInput === "clear") {
-    inputNumArray = inputNumArray.map((element) => 0);
+    inputNumArray = [];
+    emojiArrayPrint();
+    display();
+  }
+  else if (currentInputSplit.length >= 2 && isNaN(currentInputSplit[0]) === false) {
+    currentInputSplit.map((element) => {
+      inputNumArray.push(element);
+    });
     emojiArrayPrint();
     display();
   }
