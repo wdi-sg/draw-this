@@ -2,22 +2,38 @@ console.log("hello script js");
 var output = document.querySelector('#output');
 var input = document.querySelector('#input')
 var inputArray;
+output.innerHTML = "<p>What emoji would you like to use?</p>";
+var emoji;
+var status = "beginning";
 
-//Main Function
+//Initial Flow
 var inputHappened = function(currentInput){
-  inputArray = currentInput.split(" ");
-  if (inputArray.includes('clear')){
-    clearPineapples();
+  //Getting emoji
+  if (status === "beginning"){
+    emoji = currentInput;
+    status = "input stage";
+    clearOutput();
   } else {
-        for (let num of inputArray){
-            generatePineapples(num);
-        }
+  //Using input
+    inputArray = currentInput.split(" ");
+    mainFunction();
   }
   clearInput();
 };
 
+//Clear or Generate Emojis
+var mainFunction = function(){
+    if (inputArray.includes('clear')){
+      clearEmojis();
+    } else {
+      for (let num of inputArray){
+        generateEmojis(num);
+      }
+    }
+}
 
-var clearPineapples = function(){
+
+var clearEmojis = function(){
     //Clearing Specific Row
     if (inputArray.length > 1){
         var rowNumber = parseInt(inputArray[1]) - 1;
@@ -30,10 +46,10 @@ var clearPineapples = function(){
     }
 }
 
-var generatePineapples = function(input){
-    var pineapple = document.createElement("p");
-    pineapple.innerHTML = "🍍".repeat(parseInt(input));
-    display( pineapple );
+var generateEmojis = function(input){
+    var emojiLine = document.createElement("p");
+    emojiLine.innerHTML = emoji.repeat(parseInt(input));
+    display( emojiLine );
 }
 
 var clearInput = function(){
@@ -44,7 +60,7 @@ var clearOutput = function(){
     output.innerHTML = "";
 }
 
-//displaying pineapples
+//displaying emojis
 var display = function(display){
   // your DOM manipulation code here
   output.appendChild(display);
