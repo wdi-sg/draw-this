@@ -6,6 +6,10 @@
   border:3px solid blue;
 }
 
-#output{
+#instructions{
   background-color:pink;
+}
+
+li {
+	list-style-type: none;
 }
