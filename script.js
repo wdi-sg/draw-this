@@ -19,7 +19,7 @@ var inputHappened = function(currentInput){
     display();
   }
   else if (input === 'clear'){
-    document.querySelector('#output').innerText ='';
+    clear();
   }
   else{
     document.querySelector('#output').innerText ='Invalid Character';
@@ -33,3 +33,6 @@ var display = function(){
     document.getElementById('output').appendChild(newPara);
     birdOutput = '';
 };
+var clear = function(){
+  document.querySelector('#output').innerText ='';
+}
