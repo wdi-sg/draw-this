@@ -27,7 +27,7 @@ var display = function(stuffToDisplay){
     var pcreate = document.createElement("p");
     console.log("pineapple")
     for (var i=0; i<data; i++) {
-        pineapple = "🍍";
+        pineapple += "🍍";
     }
     total++;
     pcreate.innerText = pineapple;
@@ -35,7 +35,7 @@ var display = function(stuffToDisplay){
     input.appendChild(pcreate);
   }
 
-  //clear
+  //clear everything in output
   if (data == "clear") {
     console.log("clear")
     console.log(total);
