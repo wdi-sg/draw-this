@@ -1,40 +1,27 @@
 console.log("hello script js");
 initialize();
-chooseEmoji();
-var emojiSelected = false;
+drawOrPlay();
+var drawSelected = false;
+var gameSelected = false;
+var gameStarted = false;
 var selectedEmoji = "";
 
-// Part 5 - reverse triangle function
+// Part 6 - draw game
 
 // Function on input + enter
 var inputHappened = function(currentInput) {
     console.log(currentInput);
     clearInput();
-    if (emojiSelected == false) {
-        selectEmoji(currentInput);
-    } else {
-        var args = currentInput.split(" ")
-        if (!isNaN(currentInput)) {
-            display(currentInput);
-        } else if (args[0] == "clear" && !isNaN(args[1])) {
-            clearRow(args[1]);
-        } else if (currentInput == "clear") {
-            clearOutput();
-        } else if (currentInput == "reset") {
-            clearOutput();
-            selectedEmoji = "";
-            emojiSelected = false;
-            chooseEmoji();
-        } else if (!isNaN(args[0]) && !isNaN(args[1])) {
-            display(args[0]);
-            display(args[1]);
-        } else if (args[0] == "triangle" && !isNaN(args[1])) {
-            triangle(args[1]);
-        } else if (args[0] == "rtriangle" && !isNaN(args[1])) {
-            rtriangle(args[1]);
-        } else {
-            //do nothing
-        }
+    if (drawSelected == false && gameSelected == false) {
+        selectDrawOrGame(currentInput);
+    } else if (drawSelected == false && gameSelected == true) {
+        startGame(currentInput);
+        // addPara("Instructions:");
+        // addPara("[move | draw]&nbsp&nbsp[up | down | left | right ]&nbsp&nbsp[num]");
+    } else if (gameSelected == true && gameStarted == true) {
+        gameActions();
+    } else if (drawSelected ==true && gameSelected == false){
+        drawOptions(currentInput);
     }
 };
 
@@ -63,6 +50,11 @@ var customDisplay = function(length, character) {
 function clearInput() {
     var input = document.getElementById("input");
     input.value = "";
+}
+
+function placeholder(text) {
+    var input = document.getElementById("input");
+    input.placeholder = text;
 }
 // Replaces starter code output <p> with new output <div>, adds <p> styling
 function initialize() {
@@ -95,9 +87,7 @@ function addPara(content) {
 // Clears output content
 function clearOutput() {
     var output = document.getElementById("output")
-    while (output.firstChild) {
-        output.removeChild(output.lastChild);
-    }
+    output.innerHTML = "";
 }
 
 // Clears specified row of output
@@ -109,41 +99,48 @@ function clearRow(rowNumber) {
     output.removeChild(children[arrayIndex]);
 
 }
+// Print emoji selection
+function drawOrPlay() {
+    addPara("Choose an emoji to start drawing:")
+    addPara(" 1.  ♠  | 2.           ♦  | 3.  ♣  | 4.  ♥  ");
+    addPara("&nbsp");
+    addPara("Or play game: type 'game' to start");
 
-function chooseEmoji() {
-    addPara("Choose an emoji:")
-    addPara("1. ♠");
-    addPara("2. ♦");
-    addPara("3. ♣");
-    addPara("4. ♥");
 }
 
-function selectEmoji(input) {
+// Function for selecting emoji
+function selectDrawOrGame(input) {
     switch (input) {
         case "1":
             selectedEmoji = "♠"
-            emojiSelected = true;
+            drawSelected = true;
             clearOutput();
-            alert(`${selectedEmoji} emoji selected`);
+            alert(`Draw mode with ${selectedEmoji} emoji selected`);
             break;
         case "2":
             selectedEmoji = "♦"
-            emojiSelected = true;
+            drawSelected = true;
             clearOutput();
-            alert(`${selectedEmoji} emoji selected`);
+            alert(`Draw mode with ${selectedEmoji} emoji selected`);
             break;
         case "3":
             selectedEmoji = "♣"
-            emojiSelected = true;
+            drawSelected = true;
             clearOutput();
-            alert(`${selectedEmoji} emoji selected`);
+            alert(`Draw mode with ${selectedEmoji} emoji selected`);
             break;
         case "4":
             selectedEmoji = "♥"
-            emojiSelected = true;
+            drawSelected = true;
             clearOutput();
-            alert(`${selectedEmoji} emoji selected`);
+            alert(`Draw mode with ${selectedEmoji} emoji selected`);
             break;
+        case "game":
+            selectedEmoji = "⭕";
+            gameSelected = true;
+            clearOutput();
+            alert(`Game mode selected`);
+            addPara("Input size of game board:");
         default:
             selectedEmoji = "";
             break;
@@ -151,22 +148,94 @@ function selectEmoji(input) {
 
 }
 
+// Print triangle
 function triangle(height) {
     for (i = 1; i <= height; i++) {
         display(i);
     }
 }
 
+// Print reverse triangle
 function rtriangle(height) {
     var height2 = parseInt(height);
     var rowContent = "";
     var i = 1;
-    while (i<=height2) {
+    while (i <= height2) {
         rowContent += customDisplay((height2 - i), "&nbsp&nbsp&nbsp");
         rowContent += customDisplay(i, selectedEmoji);
         console.log(rowContent);
         addPara(rowContent);
         rowContent = "";
         i++;
+    }
+}
+
+function startGame(input) {
+    clearOutput();
+    boardBuilder(input);
+    gameStarted = true;
+}
+
+function boardBuilder(size) {
+    var intSize = parseInt(size);
+    var i = 1
+    while (i <= intSize) {
+        addPara(customDisplay(intSize, "⬜"));
+        i++;
+    }
+}
+
+function drawOptions(currentInput) {
+    var args = currentInput.split(" ")
+    var allNum = function (args){
+        var allNum = true;
+        for (element in args){
+            if (isNaN(args[element])){
+                allNum = false;
+            }
+        }
+        return allNum;
+    }
+    if (!isNaN(currentInput)) {
+        display(currentInput);
+    } else if (args[0] == "clear" && !isNaN(args[1])) {
+        clearRow(args[1]);
+    } else if (currentInput == "clear") {
+        clearOutput();
+    } else if (currentInput == "reset") {
+        clearOutput();
+        selectedEmoji = "";
+        drawSelected = false;
+        gameSelected = false;
+        drawOrPlay();
+    } else if (allNum(args) == true) {
+        for (element in args){
+            display(args[element]);
+        }
+    } else if (args[0] == "triangle" && !isNaN(args[1])) {
+        triangle(args[1]);
+    } else if (args[0] == "rtriangle" && !isNaN(args[1])) {
+        rtriangle(args[1]);
+    } else {
+        //do nothing
+    }
+}
+function gameOptions(currentInput) {
+    var args = currentInput.split(" ")
+    if (!isNaN(currentInput)) {
+        display(currentInput);
+    }  else if (currentInput === "clear") {
+        clearOutput();
+    } else if (currentInput === "reset") {
+        clearOutput();
+        selectedEmoji = "";
+        drawSelected = false;
+        gameSelected = false;
+        drawOrPlay();
+    } else if (!isNaN(args[0]) && !isNaN(args[1])) {
+        display(args[0]);
+        display(args[1]);
+    } else {
+        //do nothing
     }
 }
