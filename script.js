@@ -103,10 +103,10 @@ var display = function(stuffToDisplay){
             temp = temp + "🍍";
         }
         for (var k=0; k<(split[1]-(i+1)); k++) {
-            space += "&nbsp;";
+            space += " &nbsp;&nbsp;&nbsp;&nbsp;";
         }
         pineapple = space + temp;
-        pcreate.innerText = pineapple;
+        pcreate.innerHTML = pineapple;
         temp = "";
         pineapple = "";
         space = "";
