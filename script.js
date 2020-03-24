@@ -45,6 +45,10 @@ var mainFunction = function(){
         cursorShow();
     } else if (inputArray.includes('move')){
         moveAndDraw(inputArray[1], parseInt(inputArray[2]));
+    } else if (inputArray.includes('etriangle')){
+        generateETriangle(inputArray[1]);
+    } else if (inputArray.includes('eutriangle')){
+        generateEUTriangle(inputArray[1]);
     } else {
       for (let num of inputArray){
         generateEmojis(num);
@@ -137,6 +141,55 @@ var generateSquare = function(inputSize = 4){
     }
     displaySquare();
 }
+
+var generateETriangle = function(inputSize){
+    inputSize = parseInt(inputSize);
+    //loop for each line
+    for (let i = 0; i < inputSize; i++){
+        var singleLine = document.createElement("div");
+        //loop for initial spaces
+        for (let j = 0; j < inputSize - i; j++){
+            singleLine.innerHTML += "&nbsp"
+        }
+
+        //loop for on off emojis
+        for (let k = 0; k < ((i + 1) * 2) - 1; k++){
+            if (k % 2 === 0|| k === 0){
+                singleLine.innerHTML += emoji;
+            } else {
+                singleLine.innerHTML += "&nbsp";
+            }
+        }
+        console.log(singleLine);
+        display(singleLine)
+    }
+}
+
+var generateEUTriangle = function(inputSize){
+    console.log("hello")
+    inputSize = parseInt(inputSize);
+    //loop for each line
+    for (let i = inputSize; i > 0; i--){
+        var singleLine = document.createElement("div");
+        //loop for initial spaces
+        for (let j = inputSize - i; j > 0; j--){
+            singleLine.innerHTML += "&nbsp"
+        }
+
+        //loop for on off emojis
+        for (let k = i; (i * 2) - 1 > 0; i --){
+            if (k % 2 === 0|| k === i){
+                singleLine.innerHTML += emoji;
+            } else {
+                singleLine.innerHTML += "&nbsp";
+            }
+        }
+        console.log(singleLine);
+        display(singleLine)
+    }
+}
+
+
 
 var generateTriangle = function(heightAndBase){
     var singleLine = document.createElement("p");
