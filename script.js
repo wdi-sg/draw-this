@@ -19,24 +19,43 @@ function clearRow(rowNo) {
 }
 
 function addRow(length) {
-    var arrayContent = [];
+    var rowContent = [];
     for (var i = 0; i < length; i++) {
-        arrayContent.push(emoji);
+        rowContent.push(emoji);
     };
     var newRow = document.createElement(`p`);
-    newRow.textContent = arrayContent.join(``);
+    newRow.textContent = rowContent.join(``);
     newRow.setAttribute("class", "row");
     return display(newRow);
 }
 
 function createTriangle(height) {
-  for (var rowLength=1; rowLength<=height; rowLength++) {
-    addRow(rowLength);
-  }
+    for (var rowLength = 1; rowLength <= height; rowLength++) {
+        addRow(rowLength);
+    }
+}
+
+function createReverseTriangle(height) {
+    //While the no. of rows < height, create new rows.
+    for (var rowNo = 1; rowNo <= height; rowNo++) {
+        var newRow = document.createElement(`p`);
+        var rowContent = []
+        //Creating contents of the row:
+        for (var spaces = 0; spaces < (height - rowNo); spaces++) {
+            rowContent.push('⬜')
+        };
+        for (var emojis = 0; emojis < rowNo; emojis++) {
+            rowContent.push(emoji);
+        }
+        newRow.textContent = rowContent.join(``);
+        newRow.setAttribute("class", "row");
+        display(newRow);
+    }
+
 }
 
 var inputHappened = function(currentInput) {
-  clearInput();
+    clearInput();
 
     if (!addedEmoji) {
         addedEmoji = true;
@@ -59,13 +78,14 @@ var inputHappened = function(currentInput) {
                 var rowToClear = parseInt(instructions[1]);
                 clearRow(rowToClear);
 
-            } else if (instructions[0]===`triangle`) {
-              var triangleHeight = parseInt(instructions[1]);
-              createTriangle(triangleHeight);
-
-            // } else if {
-
-            //If the first word is not clear/triangle/rtriangle, assume it's all numbers.
+                //If the first word is triangle, assume second word is number and create triangle.
+            } else if (instructions[0] === `triangle`) {
+                var triangleHeight = parseInt(instructions[1]);
+                createTriangle(triangleHeight);
+            } else if (instructions[0] === `rtriangle`) {
+                var triangleHeight = parseInt(instructions[1]);
+                createReverseTriangle(triangleHeight);
+                //If the first word is not clear/triangle/rtriangle, assume it's all numbers.
             } else {
                 for (var i = 0; i < instructions.length; i++) {
                     addRow(parseInt(instructions[i]));
@@ -74,7 +94,7 @@ var inputHappened = function(currentInput) {
             //If input is just one character, assume it's a number and add row.
         } else {
             var newRow = addRow(parseInt(currentInput));
-          }
+        }
     }
 }
 
