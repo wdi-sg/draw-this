@@ -175,10 +175,9 @@ var generateEUTriangle = function(inputSize){
         for (let j = inputSize - i; j > 0; j--){
             singleLine.innerHTML += "&nbsp"
         }
-
         //loop for on off emojis
-        for (let k = i; (i * 2) - 1 > 0; i --){
-            if (k % 2 === 0|| k === i){
+        for (let k = (i * 2) - 1; k > 0; k -= 2){
+            if (k % 2 !== 0){
                 singleLine.innerHTML += emoji;
             } else {
                 singleLine.innerHTML += "&nbsp";
