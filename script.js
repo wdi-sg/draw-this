@@ -4,6 +4,7 @@ var callType;
 var inputArray;
 var numberOfCurrentRow=0;
 var rowToShoot;
+var num;
     var output=document.getElementById("output");
 var symbol="🍍";
 var questionCount=0;
@@ -90,8 +91,18 @@ numberOfCurrentRow--;}
 //clear specific row
 var clearSpecific=()=>{
 //console.log(typeof rowtoShoot);
-var rowClear=document.getElementById(rowtoShoot);
-output.removeChild(rowClear)
+var removeSpecific=document.getElementsByClassName("row");
+//var rowToDelete=parseInt(rowToShoot);
+//var rowClear=document.getElementsyId(rowtoShoot);
+
+//console.log(rowToDelete);
+//console.log(removeSpecific);
+//console.log(removeSpecific[num]);
+//output.removeChild(removeSpecific[num]);
+console.log(num);
+console.log(removeSpecific[0]);
+console.log(removeSpecific[num]);
+output.removeChild(removeSpecific[num]);
 numberOfCurrentRow--;
 //var rowClear=
 }
@@ -312,7 +323,10 @@ else if (questionCount===1)
     //console.log("wrong entry");
     if(inputArray[0].toLowerCase()==="clear")
     {
-        rowtoShoot=inputArray[1];
+
+        num=parseInt(inputArray[1])-1;
+        //console.log(rowtoShoot);
+        //console.log(typeof rowtoShoot);
         clearSpecific();
     }
     else
