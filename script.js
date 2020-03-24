@@ -2,18 +2,28 @@ console.log("hello script js");
 
 let output = "";
 
+let character = "";
+
 const init = function(){
     document.getElementById('input').value = "";
 }
 
+document.getElementById('output').textContent = "Type in the character or emoji that you would like to use.";
+
 
 var inputHappened = function(currentInput){
+  debugger;
   console.log( currentInput );
   const inputSplit = currentInput.split(" ")
   var res = inputSplit.every(function(element) {return typeof parseInt(element) === 'number';});
   console.log(res);
 
-  if(inputSplit[0] === "clear" && isNaN(parseInt(inputSplit[1])) ){
+  if(inputSplit.length === 1 && character === ""){
+    useCharacter(currentInput);
+    init()
+    document.getElementById('output').textContent = "";
+  }
+  else if(inputSplit[0] === "clear" && isNaN(parseInt(inputSplit[1])) ){
     clear();
   }
   else if(inputSplit[0] === "clear" && !isNaN(parseInt(inputSplit[1]))){
@@ -36,7 +46,7 @@ var display = function(stuffToDisplay){
   input.className = "inputClass";
 
   for(let i = 0; i<stuffToDisplay; i++){
-    output = output + "🍍"
+    output = output + character;
   }
   input.textContent = output ;
   body.appendChild(input);
@@ -54,4 +64,8 @@ var clear = function(){
 var clearRow = function(num){
     const para = document.querySelectorAll('.inputClass');
     para[num-1].textContent = "";
+}
+
+var useCharacter = function(char){
+    character = char;
 }
