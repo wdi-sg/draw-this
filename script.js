@@ -46,15 +46,14 @@ function createReverseTriangle(height) {
         //Formula for creating contents of the reverse triangle row:
         //No. of spaces per row = height-rowNo
         for (var spaces = 0; spaces < (height - rowNo); spaces++) {
-            rowContent.push('⬜')
+            rowContent.push('&nbsp;&nbsp;&nbsp;')
         };
         //No. of emojis per row = rowNo
         for (var emojis = 0; emojis < rowNo; emojis++) {
             rowContent.push(emoji);
         }
-
         //Set contents of paragraph to the combined rowContent array
-        newRow.textContent = rowContent.join(``);
+        newRow.innerHTML = rowContent.join(``);
         //Set class of paragraph to "row"
         newRow.setAttribute("class", "row");
         //Output the new row.
