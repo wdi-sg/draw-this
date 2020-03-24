@@ -5,43 +5,52 @@ const textInputHandler = (event) => {
 
 document.querySelector("#input").addEventListener("change", textInputHandler);
 
-console.log("hello script js");
 
 
+const myEmoji = [];
+let count = 0;
 
 
 var inputHappened = function(currentInput) {
   const myEmoji = [];
   document.getElementById("input").value = "";
-      console.log("myEmojiArrAfterLoop",myEmoji)
+     
 
   for (let i = 0; i < currentInput; i++) {
   myEmoji[i] = "🦠";
       }
       
-  console.log("myEmojiArrAfterLoop",myEmoji)
+  
 
   stuffToDisplay = myEmoji;
 
-  console.log(currentInput !== 0);
+
   if (currentInput !== 0) {
+    console.log(count);
+    count = count +1;
+    console.log (count);
     let newParagraph = document.createElement("p");
     newParagraph.innerHTML = stuffToDisplay;
     newParagraph.setAttribute("class", "emoji");
     document.body.appendChild(newParagraph);
-  }
-
+     }
 };
+console.log("hello");
 
+let myPToClean = document.querySelectorAll('.emoji');
+console.log("before", myPToClean);
 const clear= function(event){
-  console.log(document.querySelectorAll(".emoji"));
-  document.querySelector('body').textContent = "";
+  console.log("after", myPToClean);
+  for (j=0; j<=count; j++){
+  myPToClean[j].textContent = "";
 }
-document.querySelector("#clear").addEventListener("click",clear);
+// Select the button with # clear and add an event listener to it
+document.querySelector('#clear').addEventListener("click",clear);
+
+
 
 var display = function(stuffToDisplay) {
-  const stuff = function() {
-    console.log("sdsds");
+
   };
 
   // your DOM manipulation code here
