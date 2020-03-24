@@ -1,4 +1,3 @@
-var rowCount = 0;
 var output = document.getElementById(`output`);
 var addedEmoji = false;
 var emoji;
@@ -46,7 +45,7 @@ function createReverseTriangle(height) {
         //Formula for creating contents of the reverse triangle row:
         //No. of spaces per row = height-rowNo
         for (var spaces = 0; spaces < (height - rowNo); spaces++) {
-            rowContent.push('&nbsp;&nbsp;&nbsp;')
+            rowContent.push('&nbsp;&nbsp;&nbsp;&nbsp;')
         };
         //No. of emojis per row = rowNo
         for (var emojis = 0; emojis < rowNo; emojis++) {
@@ -70,9 +69,6 @@ var inputHappened = function(currentInput) {
         emoji = currentInput
         output.textContent = "";
     } else {
-
-        rowCount++;
-
         //If input is just "clear"
         if (currentInput === `clear`) {
             return output.textContent = ``;
