@@ -1,10 +1,12 @@
 console.log("hello script js");
 initialize();
-drawOrPlay();
+reset();
 var drawSelected = false;
 var gameSelected = false;
 var gameStarted = false;
 var selectedEmoji = "";
+var output;
+var input = document.getElementById("input")
 
 // Part 6 - draw game
 
@@ -16,13 +18,18 @@ var inputHappened = function(currentInput) {
         selectDrawOrGame(currentInput);
     } else if (drawSelected == false && gameSelected == true) {
         startGame(currentInput);
-        // addPara("Instructions:");
-        // addPara("[move | draw]&nbsp&nbsp[up | down | left | right ]&nbsp&nbsp[num]");
-    } else if (gameSelected == true && gameStarted == true) {
-        gameActions();
-    } else if (drawSelected ==true && gameSelected == false){
+    } else if (drawSelected == false && gameSelected == true && gameStarted == true) {
+        gameOptions(currentInput);
+    } else if (drawSelected == true && gameSelected == false) {
         drawOptions(currentInput);
     }
+    else if (currentInput == "clear") {
+        clearOutput();
+    }
+    else if (currentInput == "reset") {
+        reset();
+    }
+
 };
 
 //Generates content that will be put in <p>
@@ -48,25 +55,24 @@ var customDisplay = function(length, character) {
 
 // Clears value in input textbox
 function clearInput() {
-    var input = document.getElementById("input");
     input.value = "";
 }
 
 function placeholder(text) {
-    var input = document.getElementById("input");
     input.placeholder = text;
 }
 // Replaces starter code output <p> with new output <div>, adds <p> styling
 function initialize() {
-    var output = document.getElementById("output");
-    output.style.display = "none";
-    output.id = "obsolete";
+    var tempOutput = document.getElementById("output");
+    tempOutput.style.display = "none";
+    tempOutput.id = "obsolete";
     var outputDiv = document.createElement("div");
     outputDiv.className = "starter";
     outputDiv.id = "output";
     outputDiv.style.display = "block"
     var script = document.getElementsByTagName("script")
     document.body.insertBefore(outputDiv, script[0]);
+    output = document.getElementById("output");
     var style = document.createElement('style');
     style.innerHTML = `
   p {
@@ -78,7 +84,6 @@ function initialize() {
 
 // Adds content to newly created <p>
 function addPara(content) {
-    var output = document.getElementById("output")
     var outputPara = document.createElement("p");
     outputPara.innerHTML = content;
     output.appendChild(outputPara);
@@ -86,23 +91,26 @@ function addPara(content) {
 
 // Clears output content
 function clearOutput() {
-    var output = document.getElementById("output")
-    output.innerHTML = "";
+    output = document.getElementById("output");
+    output.innerText = "";
 }
 
 // Clears specified row of output
 function clearRow(rowNumber) {
     var arrayIndex = parseInt(rowNumber) - 1;
-    var output = document.getElementById("output")
     var children = output.childNodes;
-
     output.removeChild(children[arrayIndex]);
 
 }
 // Print emoji selection
-function drawOrPlay() {
+function reset() {
+    clearOutput();
+    selectedEmoji = "";
+    drawSelected = false;
+    gameSelected = false;
+    gameStarted = false;
     addPara("Choose an emoji to start drawing:")
-    addPara(" 1.  ♠  | 2.           ♦  | 3.  ♣  | 4.  ♥  ");
+    addPara(" 1.  ♠  | 2.  ♦  | 3.  ♣  | 4.  ♥  ");
     addPara("&nbsp");
     addPara("Or play game: type 'game' to start");
 
@@ -187,10 +195,10 @@ function boardBuilder(size) {
 
 function drawOptions(currentInput) {
     var args = currentInput.split(" ")
-    var allNum = function (args){
+    var allNum = function(args) {
         var allNum = true;
-        for (element in args){
-            if (isNaN(args[element])){
+        for (element in args) {
+            if (isNaN(args[element])) {
                 allNum = false;
             }
         }
@@ -201,15 +209,12 @@ function drawOptions(currentInput) {
     } else if (args[0] == "clear" && !isNaN(args[1])) {
         clearRow(args[1]);
     } else if (currentInput == "clear") {
+        gameStarted = false;
         clearOutput();
     } else if (currentInput == "reset") {
-        clearOutput();
-        selectedEmoji = "";
-        drawSelected = false;
-        gameSelected = false;
-        drawOrPlay();
+        reset();
     } else if (allNum(args) == true) {
-        for (element in args){
+        for (element in args) {
             display(args[element]);
         }
     } else if (args[0] == "triangle" && !isNaN(args[1])) {
@@ -220,18 +225,15 @@ function drawOptions(currentInput) {
         //do nothing
     }
 }
+
 function gameOptions(currentInput) {
     var args = currentInput.split(" ")
     if (!isNaN(currentInput)) {
         display(currentInput);
-    }  else if (currentInput === "clear") {
+    } else if (currentInput == "clear") {
         clearOutput();
-    } else if (currentInput === "reset") {
-        clearOutput();
-        selectedEmoji = "";
-        drawSelected = false;
-        gameSelected = false;
-        drawOrPlay();
+    } else if (currentInput == "reset") {
+        reset();
     } else if (!isNaN(args[0]) && !isNaN(args[1])) {
         display(args[0]);
         display(args[1]);
