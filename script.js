@@ -19,6 +19,7 @@ const setEmoji = userInput => {
 let testInput = null;
 var inputHappened = function(currentInput){
   ui.userInput = currentInput;
+  outputElement.innerText = currentInput;
   testInput = currentInput;
   console.log(testInput);
   if (Helpers.isDrawSingleRowCommand(currentInput)) {
@@ -50,7 +51,7 @@ var inputHappened = function(currentInput){
   if (Helpers.isDrawSquareCommand(currentInput)) {
     // place a cursor at top right corner first
     const cursor = "C";
-    display(command.execute('draw4Square'));
+    display(command.execute('drawSquare'));
     console.log("draw square");
     placeCursor(cursorLocation, "C");
   }
@@ -66,11 +67,21 @@ var inputHappened = function(currentInput){
   }
 
   // special handling
+  // pass moveCursor command
+  // moveCursor command interface
+  // in: direction, distance, current x, current y, size
+  // out: html fragment
+  // todo: check square exist else do nothing
   if (Helpers.isMoveCommand(currentInput)) {
     console.log("moving cursor");
     const instruction = currentInput.split(' ');
     const distanceToMove = instruction[1];
-    const directionToMove = instruction[0];
+    const directionCommandStr = instruction[0];
+    const directionToMove = directionCommandStr.substr("move".length, directionCommandStr );
+    const squareCollection = document.getElementById("output").children;
+    const squareSize = squareCollection.length;
+    const commandString =
+    display(command.execute('moveCursor'))
   }
 };
 

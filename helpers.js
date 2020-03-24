@@ -36,6 +36,7 @@ class UI {
     return this._draw(numElemToDraw, 'p');
   }
 
+
   drawMultiple() {
     // in: column row
     // out htmlDocFragElement
@@ -91,9 +92,9 @@ class UI {
     console.log("draw eu triangle");
     const baseNumber = parseInt(this._userInput.split(' ')[1]);
     const docFrag = document.createDocumentFragment();
-    for (let i = 1; i <= baseNumber; i++ ) {
-      const spacesToInsertBefore = i + (i - 1);
-      let trianglePartialElem = this._draw( baseNumber - i + 1 , 'p');
+    for (let i = 0; i < baseNumber; i++ ) {
+      const spacesToInsertBefore = i + (i);
+      let trianglePartialElem = this._draw( baseNumber - i , 'p');
       let temp = trianglePartialElem.textContent;
       temp = this._insertSpace(spacesToInsertBefore) + temp;
       trianglePartialElem.innerHTML = temp;
@@ -114,7 +115,7 @@ class UI {
     return "&nbsp;".repeat(numSpace);
   }
 
-  draw4Square() {
+  drawSquare() {
     const size = this._userInput.split(' ')[2];
     const docFrag = document.createDocumentFragment();
     for (let i = 1 ; i <= size; i++ ) {
@@ -122,6 +123,12 @@ class UI {
     }
     return docFrag;
   }
+
+  // takes in direction, distance, current x, current y, size
+  // returns new square
+  moveCursor() {
+  }
+
 }
 
 class Helpers {
@@ -156,7 +163,8 @@ class Helpers {
   }
 
   static isMoveCommand(input) {
-    return input.includes('move');
+    let re = new RegExp('^\\bmove(up|down|left|right)\\b \\d+$');
+    return re.test(input);
   }
 
   static isEtriangleCommand(input) {
