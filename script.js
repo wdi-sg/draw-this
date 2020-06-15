@@ -33,7 +33,10 @@ topTriangle.addEventListener('click', drawTopTriangle);
 
 function drawSquare() {
     clearOption.style.display = "none";
-    // if the values are valid
+    if (!validateInput()) {
+        return;
+    }
+
     if (rocol.length == 0) {
         storeIntoArray();
     }
@@ -47,9 +50,13 @@ function drawSquare() {
     }
     displayClear();
     status = "square";
+    clearInputs();
 }
 
 function drawSideTriangle() {
+    if (!validateInput()) {
+        return;
+    }
     if (rocol.length == 0) {
         storeIntoArray();
     }
@@ -64,9 +71,13 @@ function drawSideTriangle() {
     }
     displayClear();
     status = "sideTriangle";
+    clearInputs();
 }
 
 function drawUpsideTriangle() {
+    if (!validateInput()) {
+        return;
+    }
     if (rocol.length == 0) {
         storeIntoArray();
     }
@@ -85,16 +96,20 @@ function drawUpsideTriangle() {
     }
     displayClear();
     status = "upsideTriangle";
+    clearInputs();
 }
 
 function drawTopTriangle() {
+    if (!validateInput()) {
+        return;
+    }
     if (rocol.length == 0) {
         storeIntoArray();
     }
     output.innerHTML = "";
-
+//let j = i; j < rocol.length + (rocol.length - (i * 2)); j++
     for (let i = 0; i < rocol.length; i++) {
-        for (let j = i; j < rocol.length + (rocol.length - i); j++) {
+        for (let j = i; j < rocol.length + (rocol.length - i * 0.5); j++) {
             output.innerHTML += '&nbsp';
         }
         for (let j = 0; j < i + 1; j++) {
@@ -104,12 +119,14 @@ function drawTopTriangle() {
     }
     displayClear();
     status = "topTriangle";
+    clearInputs();
 }
 
 //---------------- CLEAR LINE FUNCTIONS ----------->
 
 function clearLine() {
     const clearLine = document.getElementById("clear-input");
+
     if (clearLine.value <= rocol.length) {
         rocol.pop();
         if (status == "side-triangle") {
@@ -129,17 +146,33 @@ function clearLine() {
         document.getElementById("clear-output").innerHTML = "Oops! The line is invalid, please key in between 1 and " + rocol.length;
     }
     clearLine.value = "";
+    clearInputs();
 }
 
 // --------------- HELPER FUNCTIONS ------------->
 
 function storeIntoArray() {
-    for (let i = 0; i < row.value; i++) {
-        rocol.push(col.value);
+    if (status == "") {
+        for (let i = 0; i < row.value; i++) {
+            rocol.push(col.value);
+        }
     }
 }
 
 function displayClear() {
     if (output.innerHTML != "") { clearOption.style.display = "initial";}
     else { clearOption.style.display = "none"; }
+}
+
+function clearInputs() {
+    row.value = "";
+    col.value = "";
+}
+
+function validateInput() {
+    if (isNaN(row.value) || isNaN(col.value)) {
+        output.innerHTML = "Invalid input ~";
+        return false;
+    }
+    return true;
 }
