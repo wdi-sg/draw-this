@@ -10,17 +10,20 @@ var inputHappened = function(currentInput){
 var display="";
 
 var display = function(stuffToDisplay){
-  // your DOM manipulation code here
-    console.log("studdToDisplay: "+stuffToDisplay.toUpperCase().startsWith("CLEAR"));
+  // your DOM manipulation code her
+    //handling clear command
     if(stuffToDisplay.toUpperCase().startsWith("CLEAR")==true){
-        //if user inputs clear
         clearP(stuffToDisplay.split(" ")[1]);
+    //handling multiple commands
+    } else if (stuffToDisplay.split(" ").length>1){
+        let inputArr = stuffToDisplay.split(" ");
+        inputArr.forEach(i=>{
+            document.getElementById("output").appendChild(drawRow(i));
+        });
     } else {
         //append new p element
         document.getElementById("output").appendChild(drawRow(stuffToDisplay));
     }
-
-
 };
 
 var clearP = function(row){
