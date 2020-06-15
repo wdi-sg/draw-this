@@ -1,19 +1,39 @@
 var flagHolder = [];
+var inputArray = [];
 
 var inputHappened = function(currentInput){
+  inputArray = currentInput.split(" ");
   console.log( currentInput );
+  console.log(inputArray);
+  
 
-  var flagLength = parseInt(currentInput);
-
-  if(currentInput.toLowerCase() === "clear"){
-    document.querySelector("#output").innerHTML="";
+  if (inputArray.length === 1){
+    var flagLength = parseInt(inputArray[0]);
+    if(inputArray[0].toLowerCase() === "clear"){
+      document.querySelector("#output").innerHTML="";
+    }else if(inputArray[0] > 0){
+      for(i=0;i<flagLength;i++){
+        flagHolder.push("🏁");
+      }
+      display();
+    }
+  }
+  if (inputArray.length===2){
+    var paragraph = parseInt(inputArray[1]);
+    console.log(paragraph);
+    
+    if(inputArray[0].toLowerCase() === "clear" && inputArray[1]>0){
+      document.querySelectorAll("p")[paragraph].remove();
+    }
   }
 
-  for(i=0;i<flagLength;i++){
-    flagHolder.push("🏁");
-  }
+  // if (inputArray.length === 2){
+  //   if(currentInput.toLowerCase() === "clear")
+  // }
 
-  display();
+
+
+
 
   //clear the input
   document.querySelector("#input").value = "";
