@@ -1,11 +1,24 @@
-console.log("hello script js");
+var fruitArray = [];
 
 var inputHappened = function(currentInput){
-  console.log( currentInput );
-  display( "WOW SOMETHING HAPPENED" );
-};
+   if (currentInput==1){
+     document.getElementById("input").value="";
+     fruitArray.push("🍍\n")
+     return output= fruitArray;
+     }
+ else if (currentInput==2){
+   document.getElementById("input").value="";
+     fruitArray.push("🍍🍍\n")
+     return output= fruitArray;
+     }
+  else if (currentInput==3){
+    document.getElementById("input").value="";
+     fruitArray.push("🍍🍍🍍\n")
+     return output= fruitArray;
+     }
+  else if (currentInput="clear"){
 
-var display = function(stuffToDisplay){
-  // your DOM manipulation code here
-  
+  }
+
+
 };
