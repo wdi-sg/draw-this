@@ -5,24 +5,26 @@
   </head>
   <title>Draw ✍️</title>
   <body>
+    <h1>Let's draw!</h1>
     <div id="wrapper">
-        <div id="header">
-            <h2>Row</h2>
-            <h2>Col</h2>
+
+        <div class="input">
+            <input id="row" name="row"> x
+            <input id="col" name="col">
+            <select id="dropdown">
+            </select>
         </div>
 
-        <input id="row" name="row"> x
-        <input id="col" name="col">
-        <select id="dropdown">
-        </select>
-        <div>
+        <div class="input">
             <button id="submit">✍️</button>
             <button id="top-triangle">🔺</button>
             <button id="side-triangle">📐</button>
             <button id="upside-triangle">🔻</button>
         </div>
 
-        <p id="output"></p>
+        <div class="output">
+            <p id="output"></p>
+        </div>
 
         <div id="clear">
             <input id="clear-input" name="">
