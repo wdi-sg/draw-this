@@ -2,15 +2,18 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
   </head>
   <body>
-    <input class="starter" id="input" placeholder="input"/>
-    <h2>output:</h2>
+    <h2>Enter number of pancakes to stack</h2>
+    <input class="starter" id="input" placeholder="enter a number"/>
+    <h2>Poof! 🍳</h2>
+    <button class="throwPancake" onclick="myFunction()">Disappear pancakes</button>
     <p class="starter" id="output"></p>
     <script>
       document.querySelector('#input').addEventListener('change', function(event){
         var currentInput = event.target.value;
-        inputHappened(currentInput)
+        inputHappened(currentInput);
       });
 
     </script>
