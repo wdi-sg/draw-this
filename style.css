@@ -1,6 +1,8 @@
-.clearButton{
-  width: 20px;
-  height: auto;
-  display: block;
+body {
+  text-align: center;
+  background-color: cyan;
 }
 
+.display {
+  padding: 50px;
+}
