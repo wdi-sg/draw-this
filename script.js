@@ -6,6 +6,7 @@ let currentEmoji = '🍍';
 
 input.onkeypress = function(event){
   console.log(input.value)
+  input.value = input.value.toLowerCase();
   if (event.keyCode == 13) {
     if (input.value === "clear") {
       input.value = '';
