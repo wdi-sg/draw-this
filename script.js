@@ -1,6 +1,10 @@
 console.log("hello script js");
 
-var px = "🍍";
+// var px = "🍍";
+
+var px = "";
+outputElement = document.getElementById("output")
+outputElement.innerHTML = "What emoji would you like to use?"
 
 var inputHappened = function(currentInput){
   console.log( currentInput );
@@ -9,21 +13,32 @@ var inputHappened = function(currentInput){
 
 var display="";
 
+
 var display = function(stuffToDisplay){
   // your DOM manipulation code her
-    //handling clear command
-    if(stuffToDisplay.toUpperCase().startsWith("CLEAR")==true){
+
+    //user hasn't input an emoji
+    if (px===""){
+        //set emoji
+        px = stuffToDisplay;
+        outputElement.innerHTML = "";
+    } else {
+        //handling clear command
+        if(stuffToDisplay.toUpperCase().startsWith("CLEAR")==true){
         clearP(stuffToDisplay.split(" ")[1]);
-    //handling multiple commands
-    } else if (stuffToDisplay.split(" ").length>1){
+        //handling multiple commands
+        } else if (stuffToDisplay.split(" ").length>1){
         let inputArr = stuffToDisplay.split(" ");
         inputArr.forEach(i=>{
             document.getElementById("output").appendChild(drawRow(i));
         });
-    } else {
+        } else {
         //append new p element
         document.getElementById("output").appendChild(drawRow(stuffToDisplay));
+        }
     }
+
+
 };
 
 var clearP = function(row){
