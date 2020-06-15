@@ -1,7 +1,7 @@
 console.log("hello script js");
 //Instructions:
 var howTo = document.createElement('h2');
-howTo.innerText = 'Valid inputs: \n' + '"3" will print emoji by 3 times \n' + '"clear 2" will clear 2nd row';
+howTo.innerText = 'Valid inputs: \n' + 'One number; e.g."3" will print emoji 3 times in a row \n' + 'Two numbers; e.g."2 4" will print 4 rows of 2 emojis \n' + 'Clear (row number) e.g."clear 2" will clear 2nd row \n';
 var textBox = document.querySelector('#input');
 var body = document.querySelector('body');
 body.insertBefore(howTo, textBox);
