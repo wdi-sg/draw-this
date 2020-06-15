@@ -37,7 +37,6 @@ var inputHappened = function(currentInput){
       } else {
         number = parseInt(userArray[0]);
         printThis = printEmojis(number);
-        //display(printThis);
         var rowTimes = parseInt(userArray[1]);
         display(printThis, rowTimes);
       } 
@@ -45,9 +44,9 @@ var inputHappened = function(currentInput){
   }
 
 //Helper Functions
-var display = function(stuffToDisplay, numbers){
-  if (numbers > 1){
-    for (var i = 0; i < numbers; i++){
+var display = function(stuffToDisplay, numberOfTimes){
+  if (numberOfTimes > 1){
+    for (var i = 0; i < numberOfTimes; i++){
       var results = document.createElement('p');
       results.innerText = stuffToDisplay;
       document.querySelector('#output').appendChild(results);
@@ -73,25 +72,13 @@ var clearRow = function(rowNumber){
   var rows = document.querySelectorAll('#output p');
   console.log(rows);
   rows[rowNumber - 1].remove();
-  // Alternate Notation 1: rows.remove(rowNumber -1); <---Why doesn't this notation work?
-  //
-  // Alternate Notation 2: while (rowNumber > 0){
-  //   rows.removeChild(rows.lastChild);
-  //   console.log('removed!');
-  //   numberOfRows--;
-  // }
 }
 
 var printMultiple = function(num, printedRow){
   for (var i = 0; i < num; i++){
     var multiplePrint = printedRow + multiplePrint;
   }
-  return multiplePrint
-  // var newNum = num -1;
-  // while (newNum > 0) {
-  //   return printedRow;
-  //   newNum--;
-  // }
+  return multiplePrint;
 }
 
 var printEmojis = function(num){
