@@ -1,11 +1,8 @@
-.starter{
-  font-size:30px;
-  padding:10px;
-  display:block;
-  margin:40px;
-  border:3px solid blue;
+body {
+  text-align: center;
+  background-color: cyan;
 }
 
-#output{
-  background-color:pink;
+.display {
+  padding: 50px;
 }
