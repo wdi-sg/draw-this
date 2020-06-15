@@ -27,19 +27,54 @@ var display = function(stuffToDisplay){
         if(stuffToDisplay.toUpperCase().startsWith("CLEAR")==true){
         clearP(stuffToDisplay.split(" ")[1]);
         //handling multiple commands
-        } else if (stuffToDisplay.split(" ").length>1){
+        } else {
+        //parse input
         let inputArr = stuffToDisplay.split(" ");
-        inputArr.forEach(i=>{
+        //triangle
+        if (inputArr[0].toUpperCase() === "TRIANGLE") {
+            let triNum = inputArr[1];
+            let triArr = drawTriangle(triNum);
+            triArr.forEach(i => {
+                document.getElementById("output").appendChild(i);
+            });
+        //rtriangle
+        } else if (inputArr[0].toUpperCase() === "RTRIANGLE"){
+            let triNum = inputArr[1];
+            let triArr = drawRtriangle(triNum);
+            triArr.forEach(i => {
+                document.getElementById("output").appendChild(i);
+            });
+        } else {
+            inputArr.forEach(i=>{
             document.getElementById("output").appendChild(drawRow(i));
         });
-        } else {
-        //append new p element
-        document.getElementById("output").appendChild(drawRow(stuffToDisplay));
+        }
         }
     }
-
-
 };
+
+var drawTriangle = function(num){
+    var displayArr = [];
+    for(let i = 1; i <= num; i++){
+        displayArr.push(drawRow(i));
+    }
+    return displayArr;
+}
+
+var drawRtriangle = function(num){
+    var displayArr = [];
+    for(let i = 1; i <= num; i++){
+        let row = drawRow(i);
+        let tmp = row.innerHTML;
+        let space = "";
+        for(let j = i; j<= num-1; j++){
+            space+="&nbsp;&nbsp;&nbsp;&nbsp;"
+        }
+        row.innerHTML = space + tmp;
+        displayArr.push(row);
+    }
+    return displayArr;
+}
 
 var clearP = function(row){
     //if no input, clear all
@@ -61,4 +96,6 @@ var drawRow = function(num){
         p.innerHTML+=px;
     }
     return p
-};
+}
+
+// 😽
