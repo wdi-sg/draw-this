@@ -3,6 +3,8 @@ const submitBtn = document.getElementById('submit-btn');
 const userInput = document.getElementById('user-input');
 const firstResult = document.getElementById('first-row');
 const secondResult = document.getElementById('second-row');
+const thirdResult = document.getElementById('third-row');
+
 
 var drawing = [];
 var inputCount = 0;
@@ -39,7 +41,7 @@ function submit() {
   }
 
   // two inputs
-  if (inputCount === 0) {
+  if (inputCount === 0 && splitInput.length > 1 && userInput.value !== "triangle 3" && userInput.value !== "rtriangle 3") {
     while (firstInput > 0) {
       drawing.push(`${char}`);
       firstInput--;
@@ -54,16 +56,34 @@ function submit() {
     userInput.value = ""
     inputCount++;
   } 
+
   // clear 
-    if (userInput.value === "clear") {
-      inputCount = 0;
-      firstResult.innerText = '';
-      secondResult.innerText = '';
-      userInput.value = "";
-    } else if (userInput.value === "clear 2") {
-      inputCount = 0;
-      secondResult.innerText = '';
-      userInput.value = ""
+  if (userInput.value === "clear") {
+    inputCount = 0;
+    firstResult.innerText = '';
+    secondResult.innerText = '';
+    userInput.value = "";
+  } else if (userInput.value === "clear 2") {
+    inputCount = 0;
+    secondResult.innerText = '';
+    userInput.value = ""
   }
+
+  // triangle 3
+  if (userInput.value === "triangle 3" && userInput.value !== "rtriangle 3") {
+    firstResult.innerText = `${char}`;
+    secondResult.innerText = `${char}${char}`;
+    thirdResult.innerText = `${char}${char}${char}`;
+    userInput.value = "";
+  } 
+
+// reverse triangle 3
+if (userInput.value === "rtriangle 3") {
+  firstResult.innerHTML = `&nbsp&nbsp&nbsp&nbsp${char}`;
+  secondResult.innerHTML = `&nbsp&nbsp${char}${char}`;
+  thirdResult.innerHTML = `${char}${char}${char}`;
+  userInput.value = "";
+  console.log('rtriangle')
+  } 
 }
 
