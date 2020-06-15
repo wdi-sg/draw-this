@@ -4,9 +4,14 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
+    <div id="errorMsg"></div>
     <input class="starter" id="input" placeholder="input"/>
     <h2>output:</h2>
     <p class="starter" id="output"></p>
+    <div class="button" style="display:inline;">
+        <button id="btn-clear" type="button" style="margin:10px;">Clear</btn>
+        <button id="btn-clear2" type="button" style="margin:10px;">Clear 2</btn>
+    </div>
     <script>
       document.querySelector('#input').addEventListener('change', function(event){
         var currentInput = event.target.value;
