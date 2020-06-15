@@ -1,54 +1,75 @@
 console.log("hello script js");
 
+var instruction = document.querySelector('#instruction');
+instruction.innerText = "Instructions: \n\n 1. number \n 2. number number \n 3. clear \n 4. clear number";
+
+var input = document.querySelector('#input');
+var output = document.querySelector('#output');
+
 function inputHappened(currentInput) {
   console.log( currentInput );
 
-  if (currentInput == "clear") {
+  var array = currentInput.split(" ");
 
-    clearOuput();
+  if (array[0] == "clear" && array[1] > 0) {
+
+    clearSelectedOutput(parseInt(array[1]));
+
+  } else if (array[0] == "clear") {
+
+    clearAll();
 
   } else {
 
-    display(checkInput(currentInput));
+    display(parseInt(array[0]), parseInt(array[1]));
 
   }
 
+  clearInput();
+
 }
 
-function display(stuffToDisplay) {
+function display(stuffToDisplay, num) {
   // your DOM manipulation code here
-  
-  var newP = document.createElement('p');
-  newP.textContent = emoji(stuffToDisplay);
-  document.querySelector('#output').appendChild(newP);
-  
-}
+  if (num > 1) {
 
-function checkInput(input) {
+    //multiple rows
+    for (var i = 1; i < num; i++) {
+      var newP = document.createElement('p');
+      newP.textContent = emoji(stuffToDisplay);
+      document.querySelector('#output').appendChild(newP);
 
-  if (isNaN(input)) {
-    
-    //return error message
-    return "Please key in a valid number!";
+    }
 
   } else {
 
-    var tempNum = parseInt(input);
-    return tempNum;
+    //single row
+    var newP = document.createElement('p');
+    newP.textContent = emoji(stuffToDisplay);
+    document.querySelector('#output').appendChild(newP);
 
   }
-
+  
+  
 }
 
 function emoji(num) {
 
-  var emoji = "💀";
+  var skull = "💀";
 
-  return emoji.repeat(num);
+  return skull.repeat(num);
 
 }
 
-function clearOuput() {
-  var output = document.querySelector('#output');
+function clearInput() {
+  input.value = "";
+}
+
+function clearSelectedOutput(num) {
+  var p = document.querySelectorAll('#output p');
+  p[num-1].remove();
+}
+
+function clearAll() {
   output.innerHTML = "";
 }
