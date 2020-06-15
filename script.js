@@ -1,11 +1,9 @@
-console.log("hello script js");
+var i;
+pineapples = "";
 
-var inputHappened = function(currentInput){
-  console.log( currentInput );
-  display( "WOW SOMETHING HAPPENED" );
-};
-
-var display = function(stuffToDisplay){
-  // your DOM manipulation code here
-  
-};
+var printPineapples = function (number1) {
+   for (i= 0; i < number1 ; i++ ) {
+     pineapples += "🍍";
+   }
+   return pineapples;
+}
