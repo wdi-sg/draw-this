@@ -2,16 +2,22 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="style.css">
+    <meta charset="utf-8">
   </head>
   <body>
     <input class="starter" id="input" placeholder="input"/>
+    <div id="error"></div>
     <h2>output:</h2>
+    <div class="message"></div>
     <p class="starter" id="output"></p>
     <script>
       document.querySelector('#input').addEventListener('change', function(event){
         var currentInput = event.target.value;
         inputHappened(currentInput)
+        document.querySelector('#input').value = "";
       });
+
+
 
     </script>
     <script src="script.js"></script>

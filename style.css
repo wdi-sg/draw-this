@@ -9,3 +9,14 @@
 #output{
   background-color:pink;
 }
+
+#error{
+    margin-left:50px;
+    color:red;
+    size:20px;
+}
+
+.message{
+    margin-left:50px;
+    font-size:15px;
+}
